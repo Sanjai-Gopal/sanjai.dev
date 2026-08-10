@@ -59,8 +59,10 @@ export default function Navbar() {
       <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4">
           <a
-            href="#"
-            aria-label={`${sanjaiProfile.name} — back to top`}
+            href={sanjaiProfile.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${sanjaiProfile.name} — open personal portfolio`}
             className="flex items-center gap-2 rounded-md font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             onClick={() => setOpen(false)}
           >

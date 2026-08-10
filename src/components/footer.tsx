@@ -8,9 +8,14 @@ export function Footer() {
       <div className="mx-auto flex max-w-4xl flex-col items-center gap-3 px-6 text-center">
         <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
           Designed &amp; Developed by{" "}
-          <span className="font-semibold text-foreground">
+          <Link
+            href={sanjaiProfile.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-foreground underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
+          >
             {sanjaiProfile.name}
-          </span>
+          </Link>
           <Heart className="size-3.5 fill-primary text-primary" aria-hidden />
         </p>
         {sanjaiProfile.footerTagline ? (

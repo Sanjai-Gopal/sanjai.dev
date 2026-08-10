@@ -193,7 +193,8 @@ export default function ChatPanel({
     <motion.div
       initial={{ opacity: 0, y: 16, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.2 }}
+      exit={{ opacity: 0, y: 12, scale: 0.98 }}
+      transition={{ duration: 0.18, ease: "easeOut" }}
       role="dialog"
       aria-label="Ask Sanjai chat assistant"
       className="fixed bottom-24 right-4 z-50 flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-border bg-background/95 shadow-2xl shadow-black/20 backdrop-blur-xl md:bottom-6 md:right-6"
@@ -204,7 +205,7 @@ export default function ChatPanel({
           <div className="flex flex-col leading-tight">
             <span className="text-sm font-semibold">Ask Sanjai</span>
             <span className="text-[11px] text-muted-foreground">
-              AI assistant · powered by Hugging Face
+              AI assistant · Sanjai&apos;s portfolio
             </span>
           </div>
         </div>
