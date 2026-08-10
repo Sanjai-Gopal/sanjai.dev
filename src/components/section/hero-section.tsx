@@ -19,7 +19,7 @@ export function HeroSection() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
                 <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
               </span>
-              Available for freelance projects
+              {sanjaiProfile.heroBadge}
             </span>
           </BlurFade>
 
@@ -68,7 +68,7 @@ export function HeroSection() {
                   "group cursor-pointer gap-2"
                 )}
               >
-                View My Projects
+                View Projects
                 <ArrowDown
                   className="size-4 transition-transform group-hover:translate-y-0.5"
                   aria-hidden

@@ -9,10 +9,10 @@ export const sanjaiProfile = {
     "Full Stack Developer",
     "Freelancer",
     "Machine Learning Enthusiast",
-    "Software Builder",
   ],
+  heroBadge: "Available for Freelance & Internship Opportunities",
   heroDescription:
-    "AI & Data Science student and freelance developer building modern full-stack applications, responsive websites, and technology-driven digital experiences while exploring machine learning and AI.",
+    "AI & Data Science student and freelance developer building modern websites, full-stack applications, and technology-driven digital experiences.",
   url: "https://sanjai-alpha.vercel.app",
   portfolioUrl,
   location: "Coimbatore, Tamil Nadu, India",
@@ -39,24 +39,24 @@ export const sanjaiProfile = {
   aboutPoints: [
     "2nd-year B.Tech AI & Data Science student at SKCET",
     "Building modern full-stack applications and responsive websites",
-    "Exploring machine learning and artificial intelligence",
+    "Exploring machine learning and deep learning",
     "Participating in hackathons and building personal/academic projects",
     "Available for freelance development projects",
   ],
   aboutIntro:
-    "I'm an AI & Data Science student who loves turning ideas into working software. I build modern web applications, explore machine learning, and take on freelance projects that ship real value.",
+    "I'm an AI & Data Science student and freelance developer who loves turning ideas into working software — from responsive websites and full-stack applications to machine learning explorations.",
   facts: [
-    { label: "Education", value: "SKCET" },
-    { label: "Degree", value: "B.Tech AI & Data Science" },
     { label: "Year", value: "2nd Year" },
+    { label: "Degree", value: "B.Tech AI & Data Science" },
     { label: "CGPA", value: "9.0" },
+    { label: "College", value: "SKCET" },
     { label: "Location", value: "Coimbatore" },
     { label: "Graduation", value: "2029" },
   ],
   freelancing: {
     badge: "Available for Freelance Projects",
     description:
-      "I build modern, responsive websites and full-stack applications for individuals, creators, startups, and businesses.",
+      "AI & Data Science student and freelance developer building modern websites, full-stack applications, and technology-driven digital experiences.",
     services: [
       "Business Websites",
       "Portfolio Websites",
@@ -109,14 +109,16 @@ export const sanjaiProfile = {
     {
       title: "AQI24",
       description:
-        "Modern air-quality monitoring platform providing environmental insights through an interactive dashboard, responsive interface, and environmental data visualization.",
+        "Air-quality monitoring platform providing environmental insights through an interactive dashboard and data visualization. Currently evolving toward AI/ML-driven environmental prediction and analysis.",
       technologies: [
         "React",
         "TypeScript",
         "Tailwind CSS",
         "REST APIs",
-        "Charts",
-        "Responsive Design",
+        "Data Visualization",
+        "Environmental Data",
+        "Full Stack",
+        "ML/DL — In Development",
       ],
       github: "https://github.com/Sanjai-Gopal/AQI24",
       live: "https://aqi-24.vercel.app/",
@@ -127,13 +129,15 @@ export const sanjaiProfile = {
     {
       title: "AQI24 Backend",
       description:
-        "Backend/API project supporting AQI24 with REST APIs, database integration, and structured backend architecture.",
+        "Backend/API project supporting AQI24 with REST APIs, database integration, and structured backend architecture — laying the groundwork for environmental data and prediction.",
       technologies: [
         "Node.js",
         "Express.js",
         "PostgreSQL",
         "REST APIs",
         "Supabase",
+        "Environmental Data",
+        "Prediction",
       ],
       github: "https://github.com/Sanjai-Gopal/backend_aqi24",
       live: undefined,
@@ -222,9 +226,14 @@ export const sanjaiProfile = {
       photos: ["/bis/bis-1.jpg", "/bis/bis-2.jpg", "/bis/bis-3.jpg"],
     },
     {
-      title: "HackNIMA 2026 Participant",
+      title: "Active in Hackathons & Collaborative Builds",
       description:
-        "Participated in the HackNIMA 2026 hackathon, building and collaborating on projects in a team environment.",
+        "Worked on multiple hackathons and collaborative builds, developing and pitching technology-driven solutions under time constraints.",
+    },
+    {
+      title: "Developing ML & Deep Learning Capabilities for AQI24",
+      description:
+        "Currently developing machine learning and deep learning capabilities for AQI24 to extend the platform toward intelligent environmental prediction and analysis.",
     },
     {
       title: "Built & Deployed Multiple Web Applications",
@@ -232,7 +241,7 @@ export const sanjaiProfile = {
         "Designed, built and deployed several web applications, including AQI24 and a tattoo studio website.",
     },
     {
-      title: "Continuous Learner",
+      title: "Continuous Learning in AI & Full Stack Development",
       description:
         "Continuously learning in AI, Machine Learning, and Full Stack Development through courses, projects, and hackathons.",
     },
@@ -249,6 +258,8 @@ export const sanjaiProfile = {
   ],
   contactDescription:
     "Open to freelance projects, internships, hackathons, collaborations, and software development opportunities.",
+  footerTagline:
+    "AI & Data Science Student • Full Stack Developer • Freelancer",
   contactMethods: [
     { label: "Email", value: "sanjai.sparkmail@gmail.com", href: "mailto:sanjai.sparkmail@gmail.com" },
     { label: "Phone", value: "+91 9363265552", href: "tel:+919363265552" },

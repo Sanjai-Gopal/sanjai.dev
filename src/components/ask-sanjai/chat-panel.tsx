@@ -1,5 +1,6 @@
 "use client";
 
+import { SanjaiLogo } from "@/components/sanjai-logo";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
 import {
@@ -12,7 +13,6 @@ import {
   X,
 } from "lucide-react";
 import { motion } from "motion/react";
-import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import type { Components } from "react-markdown";
@@ -88,17 +88,11 @@ function SanjaiAvatar({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "relative block shrink-0 overflow-hidden rounded-lg border border-border bg-muted",
+        "relative block shrink-0 overflow-hidden rounded-lg border border-border bg-card text-foreground",
         className
       )}
     >
-      <Image
-        src={sanjaiProfile.avatarUrl}
-        alt="Sanjai Gopal"
-        width={40}
-        height={40}
-        className="h-full w-full object-cover"
-      />
+      <SanjaiLogo className="absolute inset-0 size-full p-1.5" />
     </span>
   );
 }

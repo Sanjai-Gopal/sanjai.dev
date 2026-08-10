@@ -5,13 +5,13 @@ import BlurFade from "@/components/magicui/blur-fade";
 import { SectionHeading } from "@/components/section/section-heading";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
-import { BookOpenCheck, Globe, Rocket, Trophy } from "lucide-react";
+import { BookOpenCheck, BrainCircuit, Globe, Rocket, Trophy } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
-const achievementIcons = [Trophy, Rocket, Globe, BookOpenCheck];
+const achievementIcons = [Trophy, Rocket, BrainCircuit, Globe, BookOpenCheck];
 
 export function AchievementsSection() {
   const [photo, setPhoto] = useState<string | null>(null);

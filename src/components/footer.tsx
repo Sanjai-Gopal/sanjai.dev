@@ -13,6 +13,11 @@ export function Footer() {
           </span>
           <Heart className="size-3.5 fill-primary text-primary" aria-hidden />
         </p>
+        {sanjaiProfile.footerTagline ? (
+          <p className="text-xs text-muted-foreground/80">
+            {sanjaiProfile.footerTagline}
+          </p>
+        ) : null}
         {sanjaiProfile.portfolioUrl ? (
           <p className="text-xs text-muted-foreground/80">
             Personal Portfolio:{" "}

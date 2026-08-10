@@ -27,14 +27,18 @@ export function FreelancingSection() {
           />
           <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="flex flex-col gap-4">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
+                <span className="size-1.5 rounded-full bg-emerald-500" />
+                {sanjaiProfile.freelancing.badge}
+              </span>
               <h3 className="text-xl font-bold tracking-tight">
-                I build websites & applications that work.
+                Freelancer building modern websites &amp; full-stack applications.
               </h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Whether you&apos;re an individual, creator, startup, or
-                business, I can help you get online with a modern, fast, and
-                responsive web presence — from a simple landing page to a
-                full-stack application.
+                I&apos;m open to freelance web and software projects — from
+                landing pages and business websites to full-stack
+                applications. Let&apos;s turn your idea into a fast, modern,
+                and responsive web presence.
               </p>
               <div className="flex flex-col gap-3">
                 <Link

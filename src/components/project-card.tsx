@@ -102,48 +102,50 @@ export function ProjectCard({
             aria-hidden
           />
         </div>
-        <p className="flex-1 text-sm leading-relaxed text-muted-foreground">
+        <p className="text-sm leading-relaxed text-pretty text-muted-foreground">
           {description}
         </p>
-        {tags && tags.length > 0 ? (
-          <div className="flex flex-wrap gap-1.5">
-            {tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="outline"
-                className="border border-border text-[11px] font-medium h-6 px-2"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        ) : null}
-        {hasLinks ? (
-          <div className="flex flex-wrap items-center gap-3 pt-1">
-            {live ? (
-              <Link
-                href={live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:underline"
-              >
-                Live Demo
-                <ArrowUpRight className="size-3.5" aria-hidden />
-              </Link>
-            ) : null}
-            {github ? (
-              <Link
-                href={github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:text-foreground hover:underline"
-              >
-                <Github className="size-3.5" aria-hidden />
-                GitHub
-              </Link>
-            ) : null}
-          </div>
-        ) : null}
+        <div className="mt-auto flex flex-col gap-3 pt-1">
+          {tags && tags.length > 0 ? (
+            <div className="flex flex-wrap gap-1.5">
+              {tags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="outline"
+                  className="h-6 border border-border px-2 text-[11px] font-medium"
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          ) : null}
+          {hasLinks ? (
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+              {live ? (
+                <Link
+                  href={live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:underline"
+                >
+                  Live Demo
+                  <ArrowUpRight className="size-3.5" aria-hidden />
+                </Link>
+              ) : null}
+              {github ? (
+                <Link
+                  href={github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:text-foreground hover:underline"
+                >
+                  <Github className="size-3.5" aria-hidden />
+                  GitHub
+                </Link>
+              ) : null}
+            </div>
+          ) : null}
+        </div>
       </div>
     </div>
   );

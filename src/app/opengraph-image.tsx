@@ -63,7 +63,7 @@ const styles = {
         left: "40px",
         display: "flex",
         alignItems: "center",
-        zIndex: "2",
+        zIndex: 2,
     },
     mainContainer: {
         display: "flex",
@@ -73,14 +73,18 @@ const styles = {
         height: "100%",
         width: "100%",
         position: "relative",
-        zIndex: "1",
+        zIndex: 1,
     },
     image: {
-        width: "140px",
-        height: "140px",
-        borderRadius: "24px",
-        border: "4px solid #e5e5e5",
-        objectFit: "cover",
+        width: "72px",
+        height: "72px",
+        borderRadius: "16px",
+        border: "3px solid #e5e5e5",
+        padding: "12px",
+        backgroundColor: "#ffffff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
     },
     title: {
         fontFamily: "Clash Display",
@@ -108,20 +112,28 @@ const styles = {
 export default async function Image() {
     try {
         const fontData = await getFontData();
-        const imageUrl = sanjaiProfile.avatarUrl
-            ? new URL(sanjaiProfile.avatarUrl, sanjaiProfile.url).toString()
-            : undefined;
 
         return new ImageResponse(
             (
                 <div style={styles.outerWrapper}>
                     <div style={styles.middleWrapper}>
                         <div style={styles.wrapper}>
-                            {imageUrl && (
-                                <div style={styles.imageSection}>
-                                    <img src={imageUrl} alt={sanjaiProfile.name} style={styles.image} />
+                            <div style={styles.imageSection}>
+                                <div style={styles.image}>
+                                    <svg viewBox="0 0 32 32" width="48" height="48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M9.5 8.5h7.5a3 3 0 0 1 0 6c-4 0-7.5 1.2-7.5 5.2 0 2 1.6 3.3 3.5 3.3H22"
+                                            stroke="#18181b"
+                                            strokeWidth="2.4"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                        <circle cx="9.5" cy="8.5" r="2.6" fill="#18181b" />
+                                        <circle cx="13.8" cy="16.5" r="1.7" fill="#18181b" />
+                                        <circle cx="22" cy="23" r="2.6" fill="#18181b" />
+                                    </svg>
                                 </div>
-                            )}
+                            </div>
                             <div style={styles.mainContainer}>
                                 <div style={styles.title}>{sanjaiProfile.name}</div>
                                 {sanjaiProfile.headline && (

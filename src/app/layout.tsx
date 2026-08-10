@@ -26,25 +26,25 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(sanjaiProfile.url),
   title: {
-    default: "Sanjai Gopal | AI & Data Science Student | Full Stack Developer",
-    template: `%s | ${sanjaiProfile.name}`,
+    default: "Sanjai Gopal — AI & Full Stack Developer",
+    template: `%s — ${sanjaiProfile.name}`,
   },
   description:
-    "Sanjai Gopal is an AI & Data Science student and freelance full stack developer building intelligent software, responsive websites, and modern web applications.",
+    "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
   keywords: [
     "Sanjai Gopal",
     "Full Stack Developer",
     "AI and Data Science",
     "Freelancer",
+    "Machine Learning",
     "React",
     "Next.js",
-    "Machine Learning",
     "Portfolio",
   ],
   openGraph: {
-    title: "Sanjai Gopal | AI & Data Science Student | Full Stack Developer",
+    title: "Sanjai Gopal — AI & Full Stack Developer",
     description:
-      "AI & Data Science student and freelance developer building intelligent software for real-world problems.",
+      "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
     url: sanjaiProfile.url,
     siteName: `${sanjaiProfile.name} — Portfolio`,
     locale: "en_US",
@@ -62,13 +62,13 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Sanjai Gopal | AI & Data Science Student | Full Stack Developer",
+    title: "Sanjai Gopal — AI & Full Stack Developer",
     description:
-      "AI & Data Science student and freelance developer building intelligent software for real-world problems.",
+      "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
     card: "summary_large_image",
   },
   icons: {
-    icon: "/icon.svg",
+    icon: "/sanjai-logo.svg",
   },
   verification: {
     google: "",

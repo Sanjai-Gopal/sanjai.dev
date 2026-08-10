@@ -2,6 +2,7 @@
 
 import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
+import { SanjaiLogo } from "@/components/sanjai-logo";
 import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
@@ -60,13 +61,15 @@ export default function Navbar() {
           <a
             href="#"
             aria-label={`${sanjaiProfile.name} — back to top`}
-            className="flex items-center gap-2 font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+            className="flex items-center gap-2 rounded-md font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             onClick={() => setOpen(false)}
           >
-            <span className="flex size-7 items-center justify-center rounded-full bg-linear-to-tr from-primary to-primary/70 text-primary-foreground text-sm font-bold shadow-sm ring-1 ring-primary/30">
-              {sanjaiProfile.initials}
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-border bg-card text-foreground shadow-sm">
+              <SanjaiLogo className="size-5" />
             </span>
-            <span className="hidden sm:inline">{sanjaiProfile.name}</span>
+            <span className="text-[15px] leading-tight sm:text-base">
+              {sanjaiProfile.name}
+            </span>
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -88,7 +91,7 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="hidden sm:inline-flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
             >
               <Icons.github className="size-5" />
             </a>
@@ -97,11 +100,11 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="hidden sm:inline-flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
             >
               <Icons.linkedin className="size-5" />
             </a>
-            <ModeToggle className="size-9" />
+            <ModeToggle className="size-9 sm:size-8" />
             <a
               href="#contact"
               className={cn(
@@ -116,7 +119,7 @@ export default function Navbar() {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((prev) => !prev)}
-              className="inline-flex lg:hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="inline-flex size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:hidden"
             >
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
@@ -159,8 +162,8 @@ export default function Navbar() {
         </AnimatePresence>
       </header>
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-[max(1rem,env(safe-area-inset-bottom))] z-30">
-        <Dock className="z-40 pointer-events-auto relative h-14 p-1.5 w-fit mx-auto flex gap-1 sm:gap-2 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5 origin-bottom scale-[0.82] sm:scale-100">
+      <div className="pointer-events-none fixed inset-x-0 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30">
+        <Dock className="z-40 pointer-events-auto relative h-12 w-fit mx-auto flex items-center gap-1 p-1 sm:h-14 sm:gap-2 sm:p-1.5 origin-bottom scale-[0.82] sm:scale-100 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5">
           {dockItems.map((item) => {
             const IconComponent = item.icon;
             return (
@@ -171,7 +174,7 @@ export default function Navbar() {
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
                   >
-                    <DockIcon className="rounded-3xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors">
+                    <DockIcon className="rounded-2xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors sm:rounded-3xl">
                       <IconComponent className="size-full rounded-sm overflow-hidden object-contain" />
                     </DockIcon>
                   </a>
@@ -193,8 +196,8 @@ export default function Navbar() {
           />
           <Tooltip>
             <TooltipTrigger asChild>
-              <DockIcon className="rounded-3xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors">
-                <ModeToggle className="size-full cursor-pointer" />
+              <DockIcon className="rounded-2xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors sm:rounded-3xl">
+                <ModeToggle className="size-full cursor-pointer rounded-none bg-transparent text-muted-foreground hover:text-foreground" />
               </DockIcon>
             </TooltipTrigger>
             <TooltipContent

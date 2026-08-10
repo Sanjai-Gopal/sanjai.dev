@@ -10,7 +10,7 @@ import { SkillsSection } from "@/components/section/skills-section";
 
 export default function Page() {
   return (
-    <main className="flex min-h-dvh flex-col gap-24">
+    <main className="flex min-h-dvh flex-col gap-20 sm:gap-24">
       <HeroSection />
       <AboutSection />
       <SkillsSection />
