@@ -1,47 +1,57 @@
 <div align="center">
-<img alt="Portfolio" src="https://github.com/dillionverma/portfolio/assets/16860528/57ffca81-3f0a-4425-b31d-094f61725455" width="90%">
+
+# Sanjai Gopal — Portfolio
+
+### Modern personal portfolio built with Next.js, Magic UI and Framer Motion.
+
+[![Live Website](https://img.shields.io/badge/Live%20Website-Visit-black?style=for-the-badge&logo=vercel)](https://sanjai-alpha.vercel.app/)
+
 </div>
 
-# Portfolio [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdillionverma%2Fportfolio)
+---
 
-Built with next.js, [shadcn/ui](https://ui.shadcn.com/), and [magic ui](https://magicui.design/), deployed on Vercel.
+## Preview
 
-# Features
+![Portfolio Preview](./docs/portfolio-preview.png)
 
-- Setup only takes a few minutes by editing the [single config file](./src/data/resume.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/UI, TailwindCSS, Framer Motion, Magic UI
-- Includes a blog
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+---
 
-# Getting Started Locally
+## ✦ About the Website
 
-1. Clone this repository to your local machine:
+A modern, responsive personal portfolio designed to showcase projects, skills, certifications, achievements, freelance services, and an AI-powered portfolio assistant through an interactive and lightweight experience.
 
-   ```bash
-   git clone https://github.com/dillionverma/portfolio
-   ```
+---
 
-2. Move to the cloned directory
+## ✨ Features
 
-   ```bash
-   cd portfolio
-   ```
+- Modern responsive design
+- Light / dark theme
+- Magic UI components
+- Framer Motion animations
+- Smooth scrolling and micro-interactions
+- Interactive project showcase
+- Certifications and achievements sections
+- Freelancing section
+- Resume download
+- GitHub and LinkedIn integration
+- **Ask Sanjai** AI chatbot
+- Mobile-friendly layout
+- SEO and performance optimized
 
-3. Install dependencies:
+---
 
-   ```bash
-   pnpm install
-   ```
+## 🛠 Tech Stack
 
-4. Start the local Server:
+`Next.js` · `React` · `TypeScript` · `Tailwind CSS`  
+`Magic UI` · `shadcn/ui` · `Framer Motion`  
+`Vercel` · `Hugging Face`
 
-   ```bash
-   pnpm dev
-   ```
+---
 
-5. Open the [Config file](./src/data/resume.tsx) and make changes
+## 🚀 Run Locally
 
-# License
-
-Licensed under the [MIT license](https://github.com/dillionverma/portfolio/blob/main/LICENSE.md).
+```bash
+git clone https://github.com/Sanjai-Gopal/sanjai-dev.git
+cd sanjai-dev
+npm install
+npm run dev
