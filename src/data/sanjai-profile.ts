@@ -13,7 +13,7 @@ export const sanjaiProfile = {
   heroBadge: "Available for Freelance & Internship Opportunities",
   heroDescription:
     "AI & Data Science student and freelance developer building modern websites, full-stack applications, and technology-driven digital experiences.",
-  url: "https://sanjai-alpha.vercel.app",
+  url: "https://sanjai-dev.vercel.app/",
   portfolioUrl,
   location: "Coimbatore, Tamil Nadu, India",
   phone: "+91 9363265552",

@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description:
       "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
     url: sanjaiProfile.url,
-    siteName: `${sanjaiProfile.name} — Portfolio`,
+    siteName: sanjaiProfile.name,
     locale: "en_US",
     type: "website",
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   icons: {
-    icon: "/sanjai-logo.svg",
+    icon: { url: "/sanjai-favicon.png", type: "image/png", sizes: "192x192" },
   },
   verification: {
     google: "",
@@ -90,6 +90,17 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: sanjaiProfile.name,
+              url: sanjaiProfile.url,
+            }),
+          }}
+        />
         <ThemeProvider attribute="class" defaultTheme="light">
           <MotionProvider>
             <TooltipProvider delayDuration={0}>
