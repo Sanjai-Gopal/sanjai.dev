@@ -177,9 +177,9 @@ export function SkillsSection() {
     <section id="skills" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
-          eyebrow="Skills"
-          title="Technologies I work with"
-          description="Verified across GitHub repositories, production deployments, and technical assessments."
+          eyebrow="Capabilities"
+          title="Technical Stack & Expertise"
+          description="Demonstrated across open-source architectures, production deployments, and national technical assessments."
         />
       </BlurFade>
 

@@ -16,7 +16,6 @@ export function Footer() {
           >
             {sanjaiProfile.name}
           </Link>
-          <Heart className="size-3.5 fill-primary text-primary" aria-hidden />
         </p>
         {sanjaiProfile.footerTagline ? (
           <p className="text-xs text-muted-foreground/80">

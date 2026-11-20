@@ -13,9 +13,9 @@ export function FreelancingSection() {
     <section id="freelancing" className="flex min-h-0 flex-col gap-y-8">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
-          eyebrow="Freelancing"
-          title="Available for Freelance Projects"
-          description={sanjaiProfile.freelancing.description}
+          eyebrow="Services"
+          title="Engineering Services & Client Delivery"
+          description="Delivering production full-stack platforms, autonomous AI agent integrations, and high-performance web systems."
         />
       </BlurFade>
 

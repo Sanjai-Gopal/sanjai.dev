@@ -1,4 +1,5 @@
 import { sanjaiProfile } from "@/data/sanjai-profile";
+import Groq from "groq-sdk";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,20 +9,11 @@ const MAX_MESSAGE_LENGTH = 2000;
 const RATE_LIMIT = 40;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
-// Groq is the primary high-speed inference engine
-const GROQ_API_KEY = process.env.GROQ_API_KEY;
-const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY;
+const groq = process.env.GROQ_API_KEY
+  ? new Groq({ apiKey: process.env.GROQ_API_KEY })
+  : null;
 
-const isGroq = Boolean(GROQ_API_KEY);
-const API_KEY = GROQ_API_KEY || HUGGINGFACE_API_KEY;
-
-const API_BASE_URL = isGroq
-  ? process.env.GROQ_API_BASE_URL || "https://api.groq.com/openai/v1"
-  : process.env.HUGGINGFACE_API_BASE_URL || "https://router.huggingface.co/v1";
-
-const MODEL = isGroq
-  ? process.env.GROQ_MODEL || "qwen/qwen3.8-27b"
-  : process.env.HUGGINGFACE_MODEL || "mistralai/Mistral-7B-Instruct-v0.3";
+const MODEL = process.env.GROQ_MODEL || "qwen/qwen3.8-27b";
 
 const encoder = new TextEncoder();
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
@@ -169,7 +161,7 @@ function validateMessages(input: unknown): ChatMessage[] | null {
 
 export async function POST(request: Request) {
   try {
-    if (!API_KEY) {
+    if (!groq) {
       return Response.json(
         { error: "AI assistant is not configured yet. Please set GROQ_API_KEY in your environment." },
         { status: 503 }
@@ -210,65 +202,21 @@ export async function POST(request: Request) {
 
     const systemPrompt = buildSystemPrompt();
 
-    const providerResponse = await fetch(`${API_BASE_URL}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        messages: [{ role: "system", content: systemPrompt }, ...messages],
-        stream: true,
-        temperature: 0.3,
-        max_tokens: 500,
-      }),
-      signal: request.signal,
+    const groqStream = await groq.chat.completions.create({
+      model: MODEL,
+      messages: [{ role: "system", content: systemPrompt }, ...messages],
+      stream: true,
+      temperature: 0.3,
+      max_tokens: 500,
     });
-
-    if (!providerResponse.ok || !providerResponse.body) {
-      const errorText = await providerResponse.text().catch(() => "");
-      console.error(
-        "Ask Sanjai provider error:",
-        providerResponse.status,
-        errorText.slice(0, 500)
-      );
-      return new Response(sanjaiProfile.chat.unavailable, {
-        status: 502,
-        headers: { "Content-Type": "text/plain; charset=utf-8" },
-      });
-    }
-
-    const reader = providerResponse.body.getReader();
-    const decoder = new TextDecoder();
 
     const stream = new ReadableStream<Uint8Array>({
       async start(controller) {
-        let buffer = "";
         try {
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-
-            buffer += decoder.decode(value, { stream: true });
-            const lines = buffer.split("\n");
-            buffer = lines.pop() ?? "";
-
-            for (const line of lines) {
-              const trimmed = line.trim();
-              if (!trimmed.startsWith("data:")) continue;
-              const data = trimmed.slice(5).trim();
-              if (!data || data === "[DONE]") continue;
-
-              try {
-                const parsed = JSON.parse(data);
-                const delta = parsed?.choices?.[0]?.delta?.content;
-                if (typeof delta === "string" && delta.length > 0) {
-                  controller.enqueue(encoder.encode(delta));
-                }
-              } catch {
-                // Ignore malformed SSE chunks
-              }
+          for await (const chunk of groqStream) {
+            const delta = chunk.choices[0]?.delta?.content;
+            if (delta) {
+              controller.enqueue(encoder.encode(delta));
             }
           }
         } catch (error) {
@@ -276,19 +224,11 @@ export async function POST(request: Request) {
             controller.error(new Error("Aborted"));
             return;
           }
+          console.error("Groq stream error:", error);
           controller.error(error);
           return;
-        } finally {
-          try {
-            reader.releaseLock();
-          } catch {
-            // Already released
-          }
         }
         controller.close();
-      },
-      cancel() {
-        reader.cancel().catch(() => undefined);
       },
     });
 

@@ -10,7 +10,11 @@ export function EducationSection() {
   return (
     <section id="education" className="flex min-h-0 flex-col gap-y-8">
       <BlurFade delay={BLUR_FADE_DELAY}>
-        <SectionHeading eyebrow="Education" title="Where I study" />
+        <SectionHeading
+          eyebrow="Education"
+          title="Academic Background & Foundation"
+          description="Formal computer science foundation in Artificial Intelligence, Data Structures, Algorithms, and Mathematics at SKCET."
+        />
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 2}>

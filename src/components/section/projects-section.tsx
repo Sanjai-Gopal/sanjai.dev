@@ -7,7 +7,6 @@ import { SectionHeading } from "@/components/section/section-heading";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import { Sparkles } from "lucide-react";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -16,7 +15,6 @@ const categories = [
   "AI & Agents",
   "Full Stack",
   "Client Work",
-  "Competitions",
 ] as const;
 
 export function ProjectsSection() {
@@ -30,12 +28,12 @@ export function ProjectsSection() {
         );
 
   return (
-    <section id="projects" className="flex min-h-0 flex-col gap-y-6">
+    <section id="projects" className="flex min-h-0 flex-col gap-y-7 pt-4">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
-          eyebrow="Projects"
-          title="Things I've built"
-          description="Projects I've designed, built, and deployed — from autonomous AI agents to production full-stack systems."
+          eyebrow="Portfolio"
+          title="Featured Engineering Projects"
+          description="Curated production systems, autonomous AI agents, distributed backends, and environmental ML telemetry."
         />
       </BlurFade>
 
@@ -57,19 +55,16 @@ export function ProjectsSection() {
                 type="button"
                 onClick={() => setActiveCategory(category)}
                 className={cn(
-                  "relative inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  "relative inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "border border-border bg-card/60 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground shadow-xs"
+                    : "border border-border/80 bg-card/60 text-muted-foreground hover:border-border hover:text-foreground hover:bg-card"
                 )}
               >
-                {category === "AI & Agents" && (
-                  <Sparkles className="size-3" aria-hidden />
-                )}
                 <span>{category}</span>
                 <span
                   className={cn(
-                    "flex size-4 items-center justify-center rounded-full text-[10px]",
+                    "flex size-4 items-center justify-center rounded-full text-[10px] font-mono",
                     isActive
                       ? "bg-primary-foreground/20 text-primary-foreground"
                       : "bg-muted text-muted-foreground"
@@ -85,17 +80,17 @@ export function ProjectsSection() {
 
       <motion.div
         layout
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2"
+        className="grid grid-cols-1 gap-5 sm:grid-cols-2"
       >
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, id) => (
             <motion.div
               layout
               key={project.title}
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.25, delay: id * 0.04 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.22, delay: id * 0.03 }}
               className="h-full"
             >
               <ProjectCard

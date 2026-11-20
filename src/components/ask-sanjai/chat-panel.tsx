@@ -203,22 +203,21 @@ export default function ChatPanel({
       className="fixed bottom-24 right-4 z-50 flex h-[min(74vh,600px)] w-[min(calc(100vw-2rem),410px)] flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 shadow-2xl shadow-primary/10 backdrop-blur-2xl md:bottom-6 md:right-6"
     >
       {/* Header */}
-      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/40 px-4 py-3.5 backdrop-blur-xs">
+      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/30 px-4 py-3 backdrop-blur-xs">
         <div className="flex items-center gap-3">
-          <SanjaiAvatar className="size-9 rounded-xl" />
+          <SanjaiAvatar className="size-8 rounded-lg" />
           <div className="flex flex-col leading-tight">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold tracking-tight text-foreground">
+              <span className="text-sm font-semibold tracking-tight text-foreground">
                 Ask Sanjai
               </span>
-              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
-                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Live Concierge
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-600 dark:text-emerald-400">
+                <span className="size-1.5 rounded-full bg-emerald-500" />
+                Verified AI
               </span>
             </div>
-            <span className="text-[11px] text-muted-foreground flex items-center gap-1 mt-0.5">
-              <Zap className="size-3 text-amber-500 fill-amber-500/30" />
-              Powered by Groq Ultra-Fast AI
+            <span className="text-[11px] text-muted-foreground mt-0.5 font-mono">
+              Groq · Real-Time Inference
             </span>
           </div>
         </div>
@@ -230,18 +229,18 @@ export default function ChatPanel({
             aria-label="Clear chat history"
             title="Clear chat"
             disabled={!hasMessages && !streaming}
-            className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-40"
+            className="flex size-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-40"
           >
-            <Eraser className="size-4" aria-hidden />
+            <Eraser className="size-3.5" aria-hidden />
           </button>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close chat dialog"
             title="Close"
-            className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            className="flex size-7 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
-            <X className="size-4" aria-hidden />
+            <X className="size-3.5" aria-hidden />
           </button>
         </div>
       </div>
@@ -249,27 +248,26 @@ export default function ChatPanel({
       {/* Messages Viewport */}
       <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-4 py-4 scroll-smooth">
         {!hasMessages ? (
-          <div className="flex flex-col items-start gap-3.5">
-            <div className="flex items-center gap-2.5 rounded-2xl border border-border/60 bg-muted/30 p-3.5 backdrop-blur-xs">
-              <SanjaiAvatar className="size-8 rounded-lg" />
+          <div className="flex flex-col items-start gap-3">
+            <div className="flex items-center gap-2.5 rounded-xl border border-border/60 bg-muted/30 p-3 backdrop-blur-xs w-full">
+              <SanjaiAvatar className="size-7 rounded-md" />
               <div className="flex flex-col">
                 <span className="text-xs font-semibold text-foreground">
-                  Official AI Portfolio Concierge
+                  AI Portfolio Representative
                 </span>
                 <span className="text-[11px] text-muted-foreground">
-                  Verified facts · 10 Curated Projects · SKCET 9.0 CGPA
+                  10 Curated Projects · SKCET 9.0 CGPA · Hackathon Honors
                 </span>
               </div>
             </div>
 
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p className="text-xs leading-relaxed text-muted-foreground">
               {sanjaiProfile.chat.intro}
             </p>
 
             <div className="flex flex-col gap-2 pt-1 w-full">
-              <span className="text-xs font-semibold text-foreground/80 flex items-center gap-1.5">
-                <Sparkles className="size-3.5 text-primary" />
-                Suggested Inquiries:
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                Suggested Topics
               </span>
               <div className="flex flex-wrap gap-1.5">
                 {sanjaiProfile.chatSuggestions.map((suggestion) => (
@@ -277,7 +275,7 @@ export default function ChatPanel({
                     key={suggestion}
                     type="button"
                     onClick={() => onSend(suggestion)}
-                    className="rounded-full border border-border/80 bg-muted/40 px-3 py-1.5 text-xs font-medium text-foreground/80 transition-all hover:border-primary/50 hover:bg-primary/5 hover:text-primary active:scale-98"
+                    className="rounded-lg border border-border/80 bg-muted/40 px-2.5 py-1 text-xs text-foreground/80 transition-all hover:border-primary/50 hover:bg-primary/5 hover:text-primary active:scale-98"
                   >
                     {suggestion}
                   </button>

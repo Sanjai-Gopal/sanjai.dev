@@ -83,9 +83,9 @@ export function CertificationsSection() {
     <section id="certifications" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
-          eyebrow="Certifications"
-          title="Verified Certifications & Learning"
-          description="Official credentials, academic specializations, and hackathon recognitions verified across Coursera, DeepLearning.AI, Google, NPTEL, and ISRO."
+          eyebrow="Credentials"
+          title="Verified Certifications & Accreditations"
+          description="Official credentials and technical certifications verified across DeepLearning.AI, NPTEL IIT Madras, Google, and Infotact."
         />
       </BlurFade>
 

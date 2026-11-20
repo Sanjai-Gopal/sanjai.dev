@@ -20,9 +20,9 @@ export function AchievementsSection() {
     <section id="achievements" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
-          eyebrow="Achievements"
-          title="Highlights so far"
-          description="A few milestones from competitions, hackathons, and projects."
+          eyebrow="Recognition"
+          title="Hackathons & Engineering Honors"
+          description="National hackathon placements, Smart India Hackathon blockchain systems, and top national rankings in applied machine learning."
         />
       </BlurFade>
 

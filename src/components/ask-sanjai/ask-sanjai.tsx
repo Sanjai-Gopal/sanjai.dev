@@ -234,20 +234,13 @@ export function AskSanjai() {
           onClick={() => setOpen(true)}
           aria-label="Open Ask Sanjai, AI assistant"
           aria-expanded={false}
-          initial={{ scale: 1 }}
-          animate={{ scale: [1, 1.04, 1] }}
-          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-          exit={{ opacity: 0, scale: 0.9 }}
-          whileHover={{ scale: 1.06 }}
-          whileTap={{ scale: 0.96 }}
-          className="fixed bottom-24 right-4 z-50 flex items-center gap-2.5 rounded-full border border-primary/40 bg-primary/95 text-primary-foreground px-4 py-3 shadow-xl shadow-primary/25 backdrop-blur-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:bottom-6 md:right-6"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="fixed bottom-24 right-4 z-50 flex items-center gap-2 rounded-full border border-border/80 bg-background/95 text-foreground px-3.5 py-2 text-xs font-medium shadow-lg shadow-black/10 backdrop-blur-md transition-all hover:border-primary/50 hover:bg-card md:bottom-6 md:right-6"
         >
-          <span className="relative flex size-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400" />
-          </span>
-          <Sparkles className="size-4" aria-hidden />
-          <span className="text-sm font-semibold tracking-tight">Ask Sanjai · AI</span>
+          <span className="size-2 rounded-full bg-emerald-500" />
+          <span className="font-semibold tracking-tight">Ask Sanjai</span>
+          <span className="rounded bg-muted/80 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">AI</span>
         </motion.button>
       )}
     </AnimatePresence>
