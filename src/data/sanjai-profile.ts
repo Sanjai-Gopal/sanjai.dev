@@ -80,13 +80,15 @@ export const sanjaiProfile = {
   skills: [
     {
       category: "Programming Languages",
-      items: ["Python", "TypeScript", "JavaScript", "SQL", "C++", "Java", "HTML", "CSS"],
+      items: ["Python", "TypeScript", "JavaScript", "SQL", "C++", "Solidity", "Java", "HTML", "CSS"],
     },
     {
       category: "AI, Agents & Generative AI",
       items: [
+        "Agentic AI",
         "Creative AI Agents",
         "AI Agents",
+        "LLM & Gemini Integration",
         "Generative AI",
         "Prompt Engineering",
         "Deep Learning",
@@ -94,8 +96,9 @@ export const sanjaiProfile = {
         "Machine Learning",
         "Natural Language Processing (NLP)",
         "Computer Vision",
+        "scikit-learn",
+        "LightGBM",
         "TensorFlow",
-        "Scikit-learn",
         "MLOps",
       ],
     },
@@ -117,7 +120,7 @@ export const sanjaiProfile = {
     },
     {
       category: "Backend & APIs",
-      items: ["FastAPI", "Node.js", "Express.js", "Flask", "Streamlit", "REST APIs"],
+      items: ["FastAPI", "Node.js", "Express.js", "Flask", "Streamlit", "REST APIs", "JWT Auth"],
     },
     {
       category: "Databases & Cloud",
@@ -125,10 +128,66 @@ export const sanjaiProfile = {
     },
     {
       category: "DevOps & Engineering Tools",
-      items: ["Docker", "Git", "GitHub", "GitHub Actions", "Vercel", "Render", "AWS", "VS Code", "Postman", "Vitest", "Figma"],
+      items: [
+        "Docker",
+        "Git",
+        "GitHub",
+        "GitHub Actions",
+        "Vercel",
+        "Render",
+        "Vitest",
+        "Playwright",
+        "Hardhat",
+        "AWS",
+        "VS Code",
+        "Postman",
+        "Figma",
+      ],
     },
   ],
   projects: [
+    {
+      title: "VASAW AI",
+      category: "AI & Agents",
+      highlight: "6-Agent Autonomous Orchestration",
+      description:
+        "Autonomous multi-agent local business automation system. Orchestrates a 6-agent pipeline: business discovery → lead qualification (Gemini) → storage & RLS → website generation → Vercel deployment → WhatsApp outreach. Backed by 220+ Vitest unit/integration tests and Playwright checks across 4 viewport sizes.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "Agentic AI",
+        "Gemini API",
+        "Vitest",
+        "Playwright",
+        "Vercel",
+      ],
+      github: "https://github.com/Sanjai-Gopal/vasaw-ai",
+      live: "https://vasaw.ai",
+      image: "/projects/vasaw-ai.png",
+      imageAlt: "VASAW AI autonomous 6-agent local business orchestration engine",
+    },
+    {
+      title: "SIH 2026 Threat Intel",
+      category: "Full Stack",
+      highlight: "Smart India Hackathon 2026",
+      description:
+        "Forensic email threat intelligence and evidence integrity platform engineered for Smart India Hackathon 2026 (Team Dino Coders, PS 261016). Features FastAPI forensic backend (header/relay parsing, IOC extraction, ASN risk engine) with a SHA-256 evidence integrity layer and Solidity registry on Polygon Amoy testnet with 34/34 passing contract tests.",
+      technologies: [
+        "FastAPI",
+        "Python",
+        "Solidity",
+        "Polygon",
+        "Hardhat",
+        "Threat Intel",
+        "SHA-256",
+        "Docker",
+      ],
+      github: "https://github.com/Sanjai-Gopal/SIH26106",
+      live: undefined,
+      image: "/projects/sih2026.png",
+      imageAlt: "SIH 2026 forensic email threat intelligence and Polygon blockchain evidence registry",
+    },
     {
       title: "CareNest AI",
       category: "AI & Agents",
@@ -703,6 +762,12 @@ export const sanjaiProfile = {
     },
   ],
   achievements: [
+    {
+      title: "Smart India Hackathon (SIH) 2026",
+      tag: "Cybersecurity & Blockchain",
+      description:
+        "Engineered the forensic email threat intelligence backend and SHA-256 evidence integrity layer with Solidity custody registry on Polygon Amoy testnet for Team Dino Coders (Problem Statement 261016, 34/34 passing contract tests).",
+    },
     {
       title: "3rd Prize — Intercollege Hackathon (BIS)",
       tag: "Bureau of Indian Standards",
