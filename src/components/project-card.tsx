@@ -46,7 +46,7 @@ export function ProjectCard({
             alt={imageAlt ?? `${title} project screenshot`}
             fill
             quality={95}
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
           />
         ) : (

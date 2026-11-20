@@ -247,7 +247,7 @@ export const sanjaiProfile = {
       ],
       github: "https://github.com/Sanjai-Gopal/AQI24",
       live: "https://aqi-24.vercel.app/",
-      image: "/projects/aqi24.jpg",
+      image: "/projects/aqi24.png",
       imageAlt:
         "AQI24 — real-time air quality intelligence dashboard for India with AQI map, forecast and satellite telemetry",
     },
@@ -286,7 +286,7 @@ export const sanjaiProfile = {
       ],
       github: "https://github.com/Sanjai-Gopal/backend_aqi24",
       live: undefined,
-      image: "/projects/aqi24-backend.jpg",
+      image: "/projects/aqi24-backend.png",
       imageAlt:
         "AQI24 Backend — Wildfire Prediction API documentation with health, temperature, dew point and fire prediction endpoints",
     },
@@ -367,7 +367,7 @@ export const sanjaiProfile = {
       ],
       github: "https://github.com/Sanjai-Gopal/Tattoo",
       live: "https://tattoo-sooty.vercel.app/",
-      image: "/projects/tattoo-studio.jpg",
+      image: "/projects/tattoo-studio.png",
       imageAlt:
         "Tattoo Studio website — premium responsive tattoo storefront with best sellers, new arrivals and custom design offers",
     },
