@@ -54,7 +54,7 @@ function buildSystemPrompt(): string {
     "You may discuss:",
     "- Sanjai's education at SKCET (B.Tech AI & Data Science, 9.0 CGPA)",
     "- Sanjai's technical skills (Python, TypeScript, React, Next.js, FastAPI, Creative AI Agents)",
-    "- Sanjai's projects (VASAW AI, SIH 2026 Threat Intel, CareNest AI, Swasthya Sathi AI, AQI24, AlgoShelf, NovaPulse AI, Quizza, Sahay Cognitive Care, Dimsee, Pip's Dream OS, AQI24 Backend, HackHub, Forge, Tattoo Studio, ComplyAI)",
+    "- Sanjai's projects (CareNest AI, Swasthya Sathi AI, Sahay Cognitive Care, AQI24, AlgoShelf, AQI24 Backend, Forge, Tattoo Studio, Quizza, Pip's Dream OS)",
     "- Sanjai's certifications (Infotact Rank 17 96%, DeepLearning.AI, NPTEL Python, Google AI, etc.)",
     "- Sanjai's achievements (3rd Prize in Intercollege Hackathon (BIS), National Rank 17 in ML, ISRO & UNESCO hackathons)",
     "- Sanjai's hackathons and collaborative platforms",
