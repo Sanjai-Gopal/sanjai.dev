@@ -5,24 +5,34 @@ export const dynamic = "force-dynamic";
 
 const MAX_MESSAGES = 20;
 const MAX_MESSAGE_LENGTH = 2000;
-const RATE_LIMIT = 30;
+const RATE_LIMIT = 40;
 const RATE_WINDOW_MS = 10 * 60 * 1000;
 
-const API_BASE_URL =
-  process.env.HUGGINGFACE_API_BASE_URL || "https://router.huggingface.co/v1";
-const MODEL = process.env.HUGGINGFACE_MODEL || "mistralai/Mistral-7B-Instruct-v0.3";
+// Groq is the primary high-speed inference engine
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
+const HUGGINGFACE_API_KEY = process.env.HUGGINGFACE_API_KEY;
+
+const isGroq = Boolean(GROQ_API_KEY);
+const API_KEY = GROQ_API_KEY || HUGGINGFACE_API_KEY;
+
+const API_BASE_URL = isGroq
+  ? process.env.GROQ_API_BASE_URL || "https://api.groq.com/openai/v1"
+  : process.env.HUGGINGFACE_API_BASE_URL || "https://router.huggingface.co/v1";
+
+const MODEL = isGroq
+  ? process.env.GROQ_MODEL || "qwen/qwen3.8-27b"
+  : process.env.HUGGINGFACE_MODEL || "mistralai/Mistral-7B-Instruct-v0.3";
 
 const encoder = new TextEncoder();
-
 const rateLimitStore = new Map<string, { count: number; resetAt: number }>();
 
 const OFF_TOPIC_PATTERNS: RegExp[] = [
-  /\b(write|create|build|generate|show|fix|debug)\b.{0,40}\b(code|program|script|function|class|api|app|python|javascript|typescript|react|website|bug)\b/i,
-  /\b(capital|president|prime minister|population|currency) of\b/i,
-  /\b(elon musk|bill gates|barack obama|donald trump|narendra modi|albert einstein|newton|virat kohli)\b/i,
-  /\b(tell|say|recite)\b.{0,30}\b(joke|riddle|story)\b/i,
-  /\b(explain|define|what is|what are|how does|how do)\b.{0,30}\b(quantum physics|photosynthesis|gravity|relativity|black holes?)\b/i,
-  /\b(how to|steps to|guide.*)\b.{0,40}\b(crack|hack|bypass)\b/i,
+  /\b(capital|president|prime minister|population|currency)\s+of\b/i,
+  /\b(elon musk|bill gates|barack obama|donald trump|narendra modi|albert einstein|isaac newton|virat kohli)\b/i,
+  /\b(tell|say|recite)\b.{0,30}\b(joke|riddle|story|poem)\b/i,
+  /\b(explain|define|what is|how does)\b.{0,30}\b(quantum physics|photosynthesis|gravity|relativity|black holes?)\b/i,
+  /\b(how to|steps to|guide)\b.{0,40}\b(crack|hack|bypass|exploit|pirate)\b/i,
+  /\b(write|create|solve|generate)\b.{0,30}\b(homework|essay|math problem|calculus|algebra)\b/i,
 ];
 
 function getClientIp(request: Request): string {
@@ -45,44 +55,91 @@ function isRateLimited(ip: string): boolean {
 }
 
 function buildSystemPrompt(): string {
-  const profileSummary = JSON.stringify(sanjaiProfile, null, 2);
+  const projectsList = sanjaiProfile.projects
+    .map(
+      (p, i) =>
+        `${i + 1}. **${p.title}** (${p.category}): ${p.description}\n   Technologies: ${p.technologies.join(", ")}${p.live ? `\n   Live: ${p.live}` : ""}${p.github ? `\n   GitHub: ${p.github}` : ""}`
+    )
+    .join("\n");
+
+  const skillsList = sanjaiProfile.skills
+    .map((s) => `- **${s.category}**: ${s.items.join(", ")}`)
+    .join("\n");
+
+  const certificationsList = sanjaiProfile.certifications
+    .map((c) => `- **${c.name}** (${c.provider} · ${c.type})`)
+    .join("\n");
+
+  const achievementsList = sanjaiProfile.achievements
+    .map((a) => `- **${a.title}** (${a.tag}): ${a.description}`)
+    .join("\n");
+
   return [
-    "You are 'Ask Sanjai', the official AI assistant for Sanjai's personal portfolio website (sanjaibuilds.cv).",
+    "You are 'Ask Sanjai', the personal AI assistant for Sanjai on his official portfolio website (https://www.sanjaibuilds.cv/).",
     "",
-    "Your ONLY purpose is to answer questions about Sanjai and the verified information contained in his portfolio knowledge base.",
+    "=== CORE IDENTITY & PURPOSE ===",
+    "Your SOLE purpose is to speak about Sanjai: his background, engineering education, technical skills, software projects, certifications, hackathon awards, and contact details.",
     "",
-    "You may discuss:",
-    "- Sanjai's education at SKCET (B.Tech AI & Data Science, 9.0 CGPA)",
-    "- Sanjai's technical skills (Python, TypeScript, React, Next.js, FastAPI, Creative AI Agents)",
-    "- Sanjai's projects (CareNest AI, Swasthya Sathi AI, Sahay Cognitive Care, AQI24, AlgoShelf, AQI24 Backend, Forge, Tattoo Studio, Quizza, Pip's Dream OS)",
-    "- Sanjai's certifications (Infotact Rank 17 96%, DeepLearning.AI, NPTEL Python, Google AI, etc.)",
-    "- Sanjai's achievements (3rd Prize in Intercollege Hackathon (BIS), National Rank 17 in ML, ISRO & UNESCO hackathons)",
-    "- Sanjai's hackathons and collaborative platforms",
-    "- Sanjai's freelancing and contract services",
-    "- Sanjai's contact information",
-    "- Sanjai's portfolio website (https://www.sanjaibuilds.cv/)",
-    "- Sanjai's GitHub and LinkedIn",
-    "- Sanjai's resume",
-    "- Sanjai's career interests",
+    "=== STRICT TOPIC BOUNDARIES ===",
+    "1. You speak ONLY about Sanjai.",
+    "2. If a user asks about ANY topic unrelated to Sanjai (e.g. general programming tutorials, writing custom code for them, math problems, trivia, celebrities, weather, jokes, homework), politely and immediately decline:",
+    `   "${sanjaiProfile.chat.boundary.replace(/\n/g, " ")}"`,
+    "3. NEVER act as a general-purpose programming assistant, code generation engine, or homework solver.",
     "",
-    "Do NOT answer unrelated general knowledge questions, such as general technology tutorials, generic programming requests, trivia, news, science explanations, jokes, or any topic that is not about Sanjai.",
-    "If the user asks something unrelated, politely explain that you are Sanjai's portfolio assistant and redirect them to Sanjai-related topics.",
+    "=== TRUTH & VERIFICATION ===",
+    "1. Only use verified information from the profile data provided below.",
+    "2. NEVER invent clients, jobs, experiences, awards, or project details.",
+    `3. If a question about Sanjai asks for information not in his profile, reply: "I don't have that specific detail in Sanjai's portfolio yet. You can reach out to him directly at ${sanjaiProfile.email}."`,
     "",
-    "NEVER invent information about Sanjai.",
-    "NEVER invent clients, internships, awards, experience, project statistics, credentials, or technologies.",
-    "Only use verified information supplied in the portfolio context.",
-    "",
-    "If information about Sanjai is not available, say exactly:",
-    `"I don't have that information in Sanjai's portfolio yet. You can contact him directly at ${sanjaiProfile.email}."`,
-    "",
-    "Keep responses concise, professional, and friendly. Use Markdown formatting (lists, bold) when it improves clarity. Keep answers under ~180 words.",
+    "=== COMMUNICATION STYLE ===",
+    "- Speak enthusiastically and professionally about Sanjai's work as his digital representative.",
+    "- Be crisp, concise, and structured. Use Markdown bullet points and bold highlights for readability.",
+    "- Keep responses under 150 words.",
     "",
     "=== VERIFIED SANJAI PROFILE DATA ===",
-    profileSummary,
+    `Name: ${sanjaiProfile.name}`,
+    `Headline: ${sanjaiProfile.headline}`,
+    `Location: ${sanjaiProfile.location}`,
+    `Email: ${sanjaiProfile.email}`,
+    `Website: ${sanjaiProfile.url}`,
+    `GitHub: ${sanjaiProfile.github}`,
+    `LinkedIn: ${sanjaiProfile.linkedin}`,
+    `About: ${sanjaiProfile.aboutIntro}`,
+    "",
+    "EDUCATION:",
+    `- Degree: ${sanjaiProfile.education.degree}`,
+    `- Institution: ${sanjaiProfile.education.school} (${sanjaiProfile.education.location})`,
+    `- Status: ${sanjaiProfile.education.status} (${sanjaiProfile.education.start} - ${sanjaiProfile.education.end})`,
+    `- CGPA: ${sanjaiProfile.education.cgpa}`,
+    "",
+    "TECHNICAL SKILLS:",
+    skillsList,
+    "",
+    "FEATURED PROJECTS:",
+    projectsList,
+    "",
+    "CERTIFICATIONS:",
+    certificationsList,
+    "",
+    "ACHIEVEMENTS & HACKATHONS:",
+    achievementsList,
+    "",
+    "FREELANCING & CLIENT SERVICES:",
+    sanjaiProfile.freelancing.services.map((s) => `- ${s}`).join("\n"),
   ].join("\n");
 }
 
 function isOffTopic(text: string): boolean {
+  const lower = text.toLowerCase();
+  const mentionsSanjai =
+    /\b(sanjai|you|your|he|his|him|portfolio|project|projects|skill|skills|education|college|skcet|resume|contact|email|github|linkedin|carenest|swasthya|sahay|aqi24|algoshelf|forge|tattoo|quizza|pipos|hackathon|btech)\b/i.test(
+      lower
+    );
+
+  if (mentionsSanjai) {
+    return false;
+  }
+
   return OFF_TOPIC_PATTERNS.some((pattern) => pattern.test(text));
 }
 
@@ -112,9 +169,9 @@ function validateMessages(input: unknown): ChatMessage[] | null {
 
 export async function POST(request: Request) {
   try {
-    if (!process.env.HUGGINGFACE_API_KEY) {
+    if (!API_KEY) {
       return Response.json(
-        { error: "AI assistant is not configured yet." },
+        { error: "AI assistant is not configured yet. Please set GROQ_API_KEY in your environment." },
         { status: 503 }
       );
     }
@@ -138,7 +195,7 @@ export async function POST(request: Request) {
       (body as { messages?: unknown } | null)?.messages
     );
     if (!messages) {
-      return Response.json({ error: "Invalid messages." }, { status: 400 });
+      return Response.json({ error: "Invalid messages format." }, { status: 400 });
     }
 
     const userText = messages[messages.length - 1]?.content ?? "";
@@ -153,27 +210,21 @@ export async function POST(request: Request) {
 
     const systemPrompt = buildSystemPrompt();
 
-    const providerResponse = await fetch(
-      `${API_BASE_URL}/chat/completions`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.HUGGINGFACE_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: MODEL,
-          messages: [
-            { role: "system", content: systemPrompt },
-            ...messages,
-          ],
-          stream: true,
-          temperature: 0.6,
-          max_tokens: 800,
-        }),
-        signal: request.signal,
-      }
-    );
+    const providerResponse = await fetch(`${API_BASE_URL}/chat/completions`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: MODEL,
+        messages: [{ role: "system", content: systemPrompt }, ...messages],
+        stream: true,
+        temperature: 0.3,
+        max_tokens: 500,
+      }),
+      signal: request.signal,
+    });
 
     if (!providerResponse.ok || !providerResponse.body) {
       const errorText = await providerResponse.text().catch(() => "");
@@ -216,7 +267,7 @@ export async function POST(request: Request) {
                   controller.enqueue(encoder.encode(delta));
                 }
               } catch {
-                // Ignore malformed SSE chunks.
+                // Ignore malformed SSE chunks
               }
             }
           }
@@ -231,7 +282,7 @@ export async function POST(request: Request) {
           try {
             reader.releaseLock();
           } catch {
-            // Already released.
+            // Already released
           }
         }
         controller.close();
