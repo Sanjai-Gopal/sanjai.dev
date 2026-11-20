@@ -1,21 +1,29 @@
+"use client";
+
 import BlurFade from "@/components/magicui/blur-fade";
 import { buttonVariants } from "@/components/ui/button";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { LiveStatusPill } from "@/components/live-status-pill";
+import { NeuralCore3D } from "@/components/neural-core-3d";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
 import {
   ArrowDown,
+  Box,
   Download,
   Github,
   Linkedin,
+  User,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
 export function HeroSection() {
+  const [heroView, setHeroView] = useState<"3d" | "photo">("3d");
+
   return (
     <section id="hero" className="relative flex flex-col gap-8 pt-4 sm:pt-6">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center">
@@ -102,24 +110,40 @@ export function HeroSection() {
           </BlurFade>
         </div>
 
-        {/* Right Column: Profile Picture */}
+        {/* Right Column: Interactive 3D Model / Portrait Toggle */}
         <BlurFade
           delay={BLUR_FADE_DELAY * 4}
-          className="justify-self-start md:justify-self-center"
+          className="justify-self-start md:justify-self-center flex flex-col items-center gap-3"
         >
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-full border border-border/80 bg-muted shadow-lg ring-1 ring-border/50">
-              <Image
-                src={sanjaiProfile.avatarUrl}
-                alt={`${sanjaiProfile.name} — AI & Full Stack Developer`}
-                width={256}
-                height={256}
-                priority
-                sizes="(max-width: 768px) 160px, 256px"
-                className="size-36 rounded-full object-cover md:size-48 lg:size-52"
-              />
+          {heroView === "3d" ? (
+            <NeuralCore3D
+              onToggleView={() => setHeroView("photo")}
+              showTogglePhoto={true}
+            />
+          ) : (
+            <div className="relative flex flex-col items-center gap-3">
+              <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-muted p-1 shadow-xl ring-1 ring-border/50">
+                <Image
+                  src={sanjaiProfile.avatarUrl}
+                  alt={`${sanjaiProfile.name} — AI & Full Stack Developer`}
+                  width={256}
+                  height={256}
+                  priority
+                  sizes="(max-width: 768px) 200px, 256px"
+                  className="size-48 rounded-xl object-cover sm:size-56 md:size-64"
+                />
+              </div>
+
+              {/* Toggle to 3D Button */}
+              <button
+                onClick={() => setHeroView("3d")}
+                className="cursor-pointer inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/40 px-3 py-1 text-xs font-mono font-medium text-emerald-300 transition-colors hover:bg-emerald-900/60"
+              >
+                <Box className="size-3.5" />
+                Launch 3D Tensor Core ↗
+              </button>
             </div>
-          </div>
+          )}
         </BlurFade>
       </div>
 
