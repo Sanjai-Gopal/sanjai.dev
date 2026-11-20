@@ -61,14 +61,24 @@ const markdownComponents: Components = {
       />
     );
   },
-  a: (props) => (
-    <a
-      className="font-medium text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
-      target="_blank"
-      rel="noopener noreferrer"
-      {...props}
-    />
-  ),
+  a: ({ href, children, ...props }) => {
+    // Strictly validate URI protocol to prevent javascript: or data: XSS execution
+    const isSafe = href && /^(https?:\/\/|mailto:|tel:|#|\/)/i.test(href);
+    if (!isSafe) {
+      return <span>{children}</span>;
+    }
+    return (
+      <a
+        href={href}
+        className="font-medium text-emerald-400 underline underline-offset-4 transition-colors hover:text-emerald-300"
+        target="_blank"
+        rel="noopener noreferrer"
+        {...props}
+      >
+        {children}
+      </a>
+    );
+  },
 };
 
 function TypingIndicator() {
