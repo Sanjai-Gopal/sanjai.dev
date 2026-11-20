@@ -16,17 +16,18 @@ export function SectionHeading({
   return (
     <div className={cn("flex flex-col gap-3", className)}>
       <div className="flex items-center w-full gap-3">
-        <div className="flex-1 h-px bg-linear-to-r from-transparent via-border to-border" />
-        <span className="border bg-primary text-primary-foreground rounded-lg px-3.5 py-1 text-[11px] font-medium uppercase tracking-wider">
+        <div className="flex-1 h-px bg-gradient-to-r from-transparent via-border/70 to-border" />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-card/70 px-3.5 py-1 text-[11px] font-mono font-medium tracking-wider text-muted-foreground uppercase backdrop-blur-md shadow-xs">
+          <span className="size-1.5 rounded-full bg-emerald-500/80" />
           {eyebrow}
         </span>
-        <div className="flex-1 h-px bg-linear-to-l from-transparent via-border to-border" />
+        <div className="flex-1 h-px bg-gradient-to-l from-transparent via-border/70 to-border" />
       </div>
-      <h2 className="text-center text-2xl font-bold tracking-tight leading-tight text-balance sm:text-3xl">
+      <h2 className="text-center text-2xl font-bold tracking-tight leading-tight text-balance sm:text-3xl text-foreground">
         {title}
       </h2>
       {description ? (
-        <p className="mx-auto max-w-2xl text-center text-balance leading-relaxed text-muted-foreground">
+        <p className="mx-auto max-w-2xl text-center text-balance text-sm leading-relaxed text-muted-foreground sm:text-base">
           {description}
         </p>
       ) : null}

@@ -26,7 +26,7 @@ export function AchievementsSection() {
         />
       </BlurFade>
 
-      <div className="relative ml-2 flex flex-col gap-6 border-l border-border pl-6 sm:ml-4 sm:pl-8">
+      <div className="relative ml-2 flex flex-col gap-6 border-l border-border/80 pl-6 sm:ml-4 sm:pl-8">
         {sanjaiProfile.achievements.map((achievement, index) => {
           const Icon = achievementIcons[index % achievementIcons.length];
           return (
@@ -35,25 +35,26 @@ export function AchievementsSection() {
               delay={BLUR_FADE_DELAY * 2 + index * 0.05}
             >
               <div className="relative">
+                {/* Glowing emerald timeline node */}
                 <span className="absolute -left-[33px] top-1.5 flex size-4 items-center justify-center rounded-full border border-border bg-background sm:-left-[41px]">
-                  <span className="size-1.5 rounded-full bg-primary" />
+                  <span className="size-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
                 </span>
                 <div
                   className={cn(
-                    "group flex h-full flex-col gap-3 rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
+                    "group flex h-full flex-col gap-3 rounded-2xl border border-border/80 bg-card/60 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/35 hover:shadow-lg hover:shadow-emerald-500/5"
                   )}
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-primary transition-colors group-hover:bg-primary/10">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-muted/60 text-emerald-400 transition-colors group-hover:border-emerald-500/40 group-hover:bg-emerald-950/30">
                       <Icon className="size-5" aria-hidden />
                     </span>
                     {"tag" in achievement && achievement.tag ? (
-                      <span className="inline-flex rounded-full border border-border bg-background px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                      <span className="inline-flex rounded-full border border-border/70 bg-background/80 px-2.5 py-0.5 text-[11px] font-mono font-medium text-muted-foreground">
                         {achievement.tag}
                       </span>
                     ) : null}
                   </div>
-                  <h3 className="font-semibold leading-snug">
+                  <h3 className="font-semibold text-foreground leading-snug group-hover:text-emerald-300 transition-colors">
                     {achievement.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-muted-foreground">
@@ -67,7 +68,7 @@ export function AchievementsSection() {
                           type="button"
                           onClick={() => setPhoto(src)}
                           aria-label={`View photo ${photoIndex + 1}`}
-                          className="relative size-20 overflow-hidden rounded-lg border border-border transition-transform duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                          className="relative size-20 overflow-hidden rounded-lg border border-border/80 transition-all duration-300 hover:scale-105 hover:border-emerald-500/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                           <Image
                             src={src}

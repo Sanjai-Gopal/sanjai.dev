@@ -20,9 +20,9 @@ export function FreelancingSection() {
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 2}>
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8">
+        <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card/60 p-6 sm:p-8">
           <div
-            className="absolute -top-24 -right-24 size-64 rounded-full bg-primary/10 blur-3xl"
+            className="absolute -top-24 -right-24 size-64 rounded-full bg-emerald-500/5 blur-3xl"
             aria-hidden
           />
           <div className="relative grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -67,10 +67,10 @@ export function FreelancingSection() {
               {sanjaiProfile.freelancing.services.map((service, index) => (
                 <div
                   key={service}
-                  className="flex items-center gap-2.5 rounded-xl border border-border bg-background px-3.5 py-3 text-sm transition-all hover:border-primary/40 hover:bg-muted/40"
+                  className="flex items-center gap-2.5 rounded-xl border border-border/70 bg-background/70 px-3.5 py-3 text-sm transition-all duration-200 hover:border-emerald-500/35 hover:bg-emerald-950/15"
                   style={{ transitionDelay: `${index * 10}ms` }}
                 >
-                  <CheckCircle2 className="size-4 shrink-0 text-primary" aria-hidden />
+                  <CheckCircle2 className="size-4 shrink-0 text-emerald-400" aria-hidden />
                   <span className="font-medium">{service}</span>
                 </div>
               ))}

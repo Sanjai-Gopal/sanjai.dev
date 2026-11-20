@@ -35,7 +35,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "group flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card/90 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5",
+        "group flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card/70 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:shadow-xl hover:shadow-emerald-500/5",
         className
       )}
     >
@@ -67,12 +67,12 @@ export function ProjectCard({
           </div>
         )}
         <div
-          className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
+          className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"
           aria-hidden
         />
         {highlight ? (
           <div className="absolute left-3 top-3 z-10">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[11px] font-semibold text-foreground backdrop-blur-md dark:border-white/20 dark:bg-black/60 dark:text-white">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/85 px-2.5 py-1 text-[11px] font-semibold text-foreground backdrop-blur-md dark:border-white/20 dark:bg-black/60 dark:text-white">
               <span className="size-1.5 rounded-full bg-emerald-500" />
               {highlight}
             </span>
@@ -86,7 +86,7 @@ export function ProjectCard({
               rel="noopener noreferrer"
               aria-label={`${title} live demo`}
               onClick={(e) => e.stopPropagation()}
-              className="flex size-8 items-center justify-center rounded-lg border border-white/20 bg-black/50 text-white backdrop-blur transition-all hover:bg-black/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex size-8 items-center justify-center rounded-lg border border-white/20 bg-black/60 text-white backdrop-blur transition-all hover:bg-emerald-600 hover:border-emerald-500 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <ArrowUpRight className="size-4" aria-hidden />
             </Link>
@@ -98,7 +98,7 @@ export function ProjectCard({
               rel="noopener noreferrer"
               aria-label={`${title} source code`}
               onClick={(e) => e.stopPropagation()}
-              className="flex size-8 items-center justify-center rounded-lg border border-white/20 bg-black/50 text-white backdrop-blur transition-all hover:bg-black/70 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="flex size-8 items-center justify-center rounded-lg border border-white/20 bg-black/60 text-white backdrop-blur transition-all hover:bg-black/90 hover:border-white/40 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Github className="size-4" aria-hidden />
             </Link>
@@ -108,9 +108,11 @@ export function ProjectCard({
 
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-center justify-between gap-2">
-          <h3 className="font-semibold leading-snug">{title}</h3>
+          <h3 className="font-semibold text-foreground leading-snug group-hover:text-emerald-300 transition-colors">
+            {title}
+          </h3>
           <ArrowUpRight
-            className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-primary"
+            className="size-4 shrink-0 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-emerald-400"
             aria-hidden
           />
         </div>
@@ -124,7 +126,7 @@ export function ProjectCard({
                 <Badge
                   key={tag}
                   variant="outline"
-                  className="h-6 border border-border px-2 text-[11px] font-medium"
+                  className="h-6 border border-border/70 bg-background/50 px-2 text-[11px] font-medium text-muted-foreground group-hover:border-border"
                 >
                   {tag}
                 </Badge>
@@ -132,15 +134,15 @@ export function ProjectCard({
             </div>
           ) : null}
           {hasLinks ? (
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 pt-1 border-t border-border/50">
               {live ? (
                 <Link
                   href={live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 underline-offset-4 transition-all duration-300 hover:text-emerald-300 hover:underline"
                 >
-                  Live Demo
+                  Live System
                   <ArrowUpRight className="size-3.5" aria-hidden />
                 </Link>
               ) : null}
@@ -149,10 +151,10 @@ export function ProjectCard({
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground underline-offset-4 transition-all duration-300 group-hover:-translate-y-px hover:text-foreground hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground underline-offset-4 transition-all duration-300 hover:text-foreground hover:underline"
                 >
                   <Github className="size-3.5" aria-hidden />
-                  GitHub
+                  Source Repository
                 </Link>
               ) : null}
             </div>

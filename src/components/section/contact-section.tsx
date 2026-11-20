@@ -44,8 +44,8 @@ export function ContactSection() {
           {sanjaiProfile.contactMethods.map((method) => {
             const Icon = methodIcons[method.label];
             const inner = (
-              <div className="group flex h-full items-start gap-3 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-primary transition-colors group-hover:bg-primary/10">
+              <div className="group flex h-full items-start gap-3 rounded-2xl border border-border/80 bg-card/60 p-5 transition-all hover:-translate-y-0.5 hover:border-emerald-500/35 hover:shadow-lg hover:shadow-emerald-500/5">
+                <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border/70 bg-muted/60 text-emerald-400 transition-colors group-hover:border-emerald-500/40 group-hover:bg-emerald-950/30">
                   {Icon ? <Icon className="size-5" aria-hidden /> : null}
                 </span>
                 <div className="flex min-w-0 flex-col gap-0.5">

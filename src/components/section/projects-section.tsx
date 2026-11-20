@@ -57,7 +57,7 @@ export function ProjectsSection() {
                 className={cn(
                   "relative inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                   isActive
-                    ? "bg-primary text-primary-foreground shadow-xs"
+                    ? "border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 font-semibold shadow-xs"
                     : "border border-border/80 bg-card/60 text-muted-foreground hover:border-border hover:text-foreground hover:bg-card"
                 )}
               >
@@ -66,7 +66,7 @@ export function ProjectsSection() {
                   className={cn(
                     "flex size-4 items-center justify-center rounded-full text-[10px] font-mono",
                     isActive
-                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      ? "bg-emerald-500/20 text-emerald-300 font-semibold"
                       : "bg-muted text-muted-foreground"
                   )}
                 >

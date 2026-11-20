@@ -102,13 +102,16 @@ export function HeroSection() {
           </BlurFade>
         </div>
 
-        {/* Right Column: Profile Picture */}
+        {/* Right Column: Profile Picture with Subtle Ambient Halo */}
         <BlurFade
           delay={BLUR_FADE_DELAY * 4}
           className="justify-self-start md:justify-self-center"
         >
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-full border border-border/80 bg-muted shadow-lg ring-1 ring-border/50">
+          <div className="relative group">
+            {/* Ambient executive glow */}
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-emerald-500/25 via-sky-500/10 to-transparent blur-md opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+            
+            <div className="relative overflow-hidden rounded-full border border-border/80 bg-card p-1 shadow-2xl ring-1 ring-border/50">
               <Image
                 src={sanjaiProfile.avatarUrl}
                 alt={`${sanjaiProfile.name} — AI & Full Stack Developer`}
@@ -118,6 +121,12 @@ export function HeroSection() {
                 sizes="(max-width: 768px) 160px, 256px"
                 className="size-36 rounded-full object-cover md:size-48 lg:size-52"
               />
+            </div>
+
+            {/* Active engineering badge */}
+            <div className="absolute -bottom-1 right-2 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-background/95 px-2.5 py-0.5 text-[10px] font-mono font-medium text-emerald-400 shadow-md backdrop-blur-md">
+              <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span>ACTIVE</span>
             </div>
           </div>
         </BlurFade>
@@ -129,7 +138,7 @@ export function HeroSection() {
           {sanjaiProfile.metrics.map((metric) => (
             <div
               key={metric.label}
-              className="flex flex-col gap-0.5 rounded-xl border border-border/60 bg-card/40 p-3.5 transition-colors hover:border-border hover:bg-card/70"
+              className="flex flex-col gap-0.5 rounded-xl border border-border/60 bg-card/40 p-3.5 transition-all duration-200 hover:border-emerald-500/30 hover:bg-card/70 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/5"
             >
               <span className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
                 {metric.value}

@@ -99,8 +99,8 @@ export function CertificationsSection() {
             className={cn(
               "cursor-pointer rounded-full px-3 py-1.5 text-xs font-semibold transition-all",
               filter === cat
-                ? "bg-primary text-primary-foreground shadow-xs"
-                : "border border-border bg-card text-muted-foreground hover:bg-accent hover:text-foreground"
+                ? "border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 font-semibold shadow-xs"
+                : "border border-border/80 bg-card/60 text-muted-foreground hover:border-border hover:bg-card hover:text-foreground"
             )}
           >
             {cat}
@@ -122,7 +122,7 @@ export function CertificationsSection() {
               delay={BLUR_FADE_DELAY * 2 + Math.min(index * 0.03, 0.4)}
               className="h-full"
             >
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5">
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border/80 bg-card/60 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-500/35 hover:shadow-lg hover:shadow-emerald-500/5">
                 <div
                   className={cn(
                     "relative flex h-24 shrink-0 items-center justify-center overflow-hidden bg-linear-to-br",

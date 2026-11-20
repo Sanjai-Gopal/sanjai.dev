@@ -186,9 +186,10 @@ export function SkillsSection() {
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {sanjaiProfile.skills.map((group, groupIndex) => (
           <BlurFade key={group.category} delay={BLUR_FADE_DELAY * 2 + groupIndex * 0.05}>
-            <div className="flex h-full flex-col gap-3 rounded-2xl border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
-              <h3 className="text-sm font-bold uppercase tracking-wide text-muted-foreground">
-                {group.category}
+            <div className="flex h-full flex-col gap-3 rounded-2xl border border-border/80 bg-card/60 p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-muted-foreground flex items-center justify-between">
+                <span>{group.category}</span>
+                <span className="size-1.5 rounded-full bg-emerald-500/50" />
               </h3>
               <div className="flex flex-wrap gap-2">
                 {group.items.map((skill) => {
@@ -196,7 +197,7 @@ export function SkillsSection() {
                   return (
                     <span
                       key={skill}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-border bg-background px-2.5 py-1 text-xs font-medium text-foreground transition-all hover:border-primary/40 hover:bg-primary/5"
+                      className="inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground transition-all duration-200 hover:border-emerald-500/40 hover:bg-emerald-950/20 hover:text-emerald-300"
                     >
                       {Icon ? <Icon className="size-3.5" aria-hidden /> : null}
                       {skill}

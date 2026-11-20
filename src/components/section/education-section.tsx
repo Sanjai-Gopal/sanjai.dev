@@ -18,18 +18,18 @@ export function EducationSection() {
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 2}>
-        <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8">
+        <div className="relative overflow-hidden rounded-2xl border border-border/80 bg-card/60 p-6 sm:p-8">
           <div
-            className="absolute -bottom-24 -left-24 size-64 rounded-full bg-primary/10 blur-3xl"
+            className="absolute -bottom-24 -left-24 size-64 rounded-full bg-emerald-500/5 blur-3xl"
             aria-hidden
           />
           <div className="relative flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-4">
-              <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-border bg-muted text-primary">
+              <span className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-border/70 bg-muted/60 text-emerald-400">
                 <GraduationCap className="size-6" aria-hidden />
               </span>
               <div className="flex flex-col gap-1.5">
-                <h3 className="text-lg font-bold tracking-tight">{edu.school}</h3>
+                <h3 className="text-lg font-bold tracking-tight text-foreground">{edu.school}</h3>
                 <p className="text-sm text-muted-foreground">{edu.degree}</p>
                 <p className="flex items-center gap-1.5 text-xs text-muted-foreground">
                   <MapPin className="size-3.5" aria-hidden />
@@ -38,13 +38,13 @@ export function EducationSection() {
               </div>
             </div>
             <div className="flex flex-wrap gap-2">
-              <span className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-1.5 text-sm font-medium">
+              <span className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 px-3 py-1.5 text-xs font-mono font-medium">
                 {edu.status}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-1.5 text-sm font-medium">
+              <span className="inline-flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-950/30 px-3 py-1.5 text-xs font-mono font-semibold text-emerald-400">
                 CGPA: {edu.cgpa}
               </span>
-              <span className="inline-flex items-center gap-2 rounded-xl border border-border bg-background px-3 py-1.5 text-sm font-medium">
+              <span className="inline-flex items-center gap-2 rounded-xl border border-border/70 bg-background/80 px-3 py-1.5 text-xs font-mono font-medium text-muted-foreground">
                 {edu.start} – {edu.end}
               </span>
             </div>
