@@ -1,6 +1,6 @@
 import { GlobeIcon, MailIcon } from "lucide-react";
 
-export type IconProps = React.HTMLAttributes<SVGElement>;
+export type IconProps = React.SVGProps<SVGSVGElement>;
 
 export const Icons = {
   globe: (props: IconProps) => <GlobeIcon {...props} />,

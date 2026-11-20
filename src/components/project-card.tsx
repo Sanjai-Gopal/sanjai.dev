@@ -10,6 +10,8 @@ interface ProjectCardProps {
   title: string;
   description: string;
   tags: readonly string[];
+  category?: string;
+  highlight?: string;
   github?: string;
   live?: string;
   image?: string;
@@ -21,6 +23,7 @@ export function ProjectCard({
   title,
   description,
   tags,
+  highlight,
   github,
   live,
   image,
@@ -42,7 +45,8 @@ export function ProjectCard({
             src={image}
             alt={imageAlt ?? `${title} project screenshot`}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
+            quality={95}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 640px"
             className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
@@ -66,6 +70,14 @@ export function ProjectCard({
           className="pointer-events-none absolute inset-0 bg-linear-to-t from-black/25 via-transparent to-transparent"
           aria-hidden
         />
+        {highlight ? (
+          <div className="absolute left-3 top-3 z-10">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-2.5 py-1 text-[11px] font-semibold text-foreground backdrop-blur-md dark:border-white/20 dark:bg-black/60 dark:text-white">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              {highlight}
+            </span>
+          </div>
+        ) : null}
         <div className="absolute right-3 top-3 flex gap-1.5">
           {live ? (
             <Link

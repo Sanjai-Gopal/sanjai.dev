@@ -8,43 +8,38 @@ import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
-});
-
-const geistMono = Geist_Mono({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-mono",
-});
+const geist = GeistSans;
+const geistMono = GeistMono;
 
 export const metadata: Metadata = {
   metadataBase: new URL(sanjaiProfile.url),
   title: {
-    default: "Sanjai Gopal — AI & Full Stack Developer",
+    default: `${sanjaiProfile.name} — AI & Full Stack Developer`,
     template: `%s — ${sanjaiProfile.name}`,
   },
   description:
-    "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
+    "Portfolio of Sanjai, an AI & Data Science student, full-stack developer, AI agent builder, and freelancer building production-grade software and AI-driven applications.",
   keywords: [
-    "Sanjai Gopal",
+    "Sanjai",
+    "sanjaibuilds",
     "Full Stack Developer",
+    "AI Agent Builder",
     "AI and Data Science",
     "Freelancer",
     "Machine Learning",
     "React",
     "Next.js",
+    "FastAPI",
     "Portfolio",
   ],
   openGraph: {
-    title: "Sanjai Gopal — AI & Full Stack Developer",
+    title: `${sanjaiProfile.name} — AI & Full Stack Developer`,
     description:
-      "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
+      "Portfolio of Sanjai, an AI & Data Science student, full-stack developer, AI agent builder, and freelancer building production-grade software and AI-driven applications.",
     url: sanjaiProfile.url,
     siteName: sanjaiProfile.name,
     locale: "en_US",
@@ -62,9 +57,9 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "Sanjai Gopal — AI & Full Stack Developer",
+    title: `${sanjaiProfile.name} — AI & Full Stack Developer`,
     description:
-      "Portfolio of Sanjai Gopal, an AI & Data Science student, full-stack developer, freelancer, and machine learning enthusiast building modern software and AI-driven applications.",
+      "Portfolio of Sanjai, an AI & Data Science student, full-stack developer, AI agent builder, and freelancer building production-grade software and AI-driven applications.",
     card: "summary_large_image",
   },
   icons: {
@@ -104,20 +99,21 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light">
           <MotionProvider>
             <TooltipProvider delayDuration={0}>
-              <div className="absolute inset-x-0 top-0 h-[140px] overflow-hidden z-0">
+              <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-25 dark:opacity-20">
                 <FlickeringGrid
                   className="h-full w-full"
-                  squareSize={2}
-                  gridGap={2}
+                  squareSize={3}
+                  gridGap={3}
+                  maxOpacity={0.25}
                   style={{
                     maskImage:
-                      "linear-gradient(to bottom, black, transparent)",
+                      "radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%)",
                     WebkitMaskImage:
-                      "linear-gradient(to bottom, black, transparent)",
+                      "radial-gradient(ellipse at 50% 25%, black 40%, transparent 80%)",
                   }}
                 />
               </div>
-              <div className="relative z-10 max-w-4xl mx-auto px-6 pt-28 pb-32 sm:pt-32">
+              <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-28 sm:pt-28">
                 {children}
               </div>
               <Footer />

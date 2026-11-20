@@ -1,4 +1,5 @@
 import BlurFade from "@/components/magicui/blur-fade";
+import { CopyEmailButton } from "@/components/copy-email-button";
 import { SectionHeading } from "@/components/section/section-heading";
 import { buttonVariants } from "@/components/ui/button";
 import { sanjaiProfile } from "@/data/sanjai-profile";
@@ -29,7 +30,7 @@ const methodIcons: Record<
 
 export function ContactSection() {
   return (
-    <section id="contact" className="flex min-h-0 flex-col gap-y-8">
+    <section id="contact" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
           eyebrow="Contact"
@@ -81,16 +82,19 @@ export function ContactSection() {
       </BlurFade>
 
       <BlurFade delay={BLUR_FADE_DELAY * 3}>
-        <div className="flex flex-col items-center gap-3">
-          <Link
-            href={`mailto:${sanjaiProfile.email}`}
-            className={cn(buttonVariants({ size: "lg" }), "cursor-pointer gap-2")}
-          >
-            <Send className="size-4" aria-hidden />
-            Let&apos;s Work Together
-          </Link>
+        <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href={`mailto:${sanjaiProfile.email}`}
+              className={cn(buttonVariants({ size: "lg" }), "cursor-pointer gap-2")}
+            >
+              <Send className="size-4" aria-hidden />
+              Let&apos;s Work Together
+            </Link>
+            <CopyEmailButton email={sanjaiProfile.email} />
+          </div>
           <p className="text-xs text-muted-foreground">
-            I usually respond within a day.
+            I usually respond within 24 hours.
           </p>
         </div>
       </BlurFade>

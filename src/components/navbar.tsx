@@ -17,6 +17,7 @@ import { Home, Mail, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { Icons } from "@/components/icons";
+import { CommandMenu } from "@/components/command-menu";
 
 const dockItems = [
   {
@@ -75,11 +76,18 @@ export default function Navbar() {
           </a>
 
           <ul className="hidden items-center gap-1 lg:flex">
-            {sanjaiProfile.navigation.map((item) => (
+            {[
+              { label: "About", href: "#about" },
+              { label: "Projects", href: "#projects" },
+              { label: "Skills", href: "#skills" },
+              { label: "Achievements", href: "#achievements" },
+              { label: "Certifications", href: "#certifications" },
+              { label: "Contact", href: "#contact" },
+            ].map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {item.label}
                 </a>
@@ -87,31 +95,14 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-1.5">
-            <a
-              href={sanjaiProfile.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
-            >
-              <Icons.github className="size-5" />
-            </a>
-            <a
-              href={sanjaiProfile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="hidden size-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:inline-flex"
-            >
-              <Icons.linkedin className="size-5" />
-            </a>
+          <div className="flex items-center gap-2">
+            <CommandMenu />
             <ModeToggle className="size-9 sm:size-8" />
             <a
               href="#contact"
               className={cn(
                 buttonVariants({ size: "sm" }),
-                "hidden md:inline-flex cursor-pointer"
+                "hidden md:inline-flex cursor-pointer font-medium"
               )}
             >
               Hire Me

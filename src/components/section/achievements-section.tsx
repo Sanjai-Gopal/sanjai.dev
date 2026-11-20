@@ -17,7 +17,7 @@ export function AchievementsSection() {
   const [photo, setPhoto] = useState<string | null>(null);
 
   return (
-    <section id="achievements" className="flex min-h-0 flex-col gap-y-8">
+    <section id="achievements" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
           eyebrow="Achievements"
@@ -43,9 +43,16 @@ export function AchievementsSection() {
                     "group flex h-full flex-col gap-3 rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5"
                   )}
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-primary transition-colors group-hover:bg-primary/10">
-                    <Icon className="size-5" aria-hidden />
-                  </span>
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <span className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-muted text-primary transition-colors group-hover:bg-primary/10">
+                      <Icon className="size-5" aria-hidden />
+                    </span>
+                    {"tag" in achievement && achievement.tag ? (
+                      <span className="inline-flex rounded-full border border-border bg-background px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground">
+                        {achievement.tag}
+                      </span>
+                    ) : null}
+                  </div>
                   <h3 className="font-semibold leading-snug">
                     {achievement.title}
                   </h3>
@@ -82,8 +89,8 @@ export function AchievementsSection() {
 
       <CertificateLightbox
         open={Boolean(photo)}
-        title="BIS Smart Consumer Competition"
-        subtitle="3rd Runner-Up — presenting the project"
+        title="BIS Smart Consumer Intercollege Hackathon"
+        subtitle="3rd Prize — presenting the ComplyAI project"
         src={photo ?? undefined}
         kind="image"
         onClose={() => setPhoto(null)}

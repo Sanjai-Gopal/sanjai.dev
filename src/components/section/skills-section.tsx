@@ -3,27 +3,43 @@ import { SectionHeading } from "@/components/section/section-heading";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import type { ComponentType, SVGProps } from "react";
 import {
+  Activity,
   BarChart3,
+  Binary,
+  Bot,
+  Boxes,
   Braces,
   BrainCircuit,
   Calculator,
+  Camera,
   Cloud,
   Code2,
+  Cpu,
   Database,
   DatabaseZap,
+  Eye,
   FileCode,
   Flame,
   FlaskConical,
   GitBranch,
   Github,
   Layers,
+  LineChart,
+  MessageSquareCode,
+  Network,
   Palette,
   PenTool,
+  Play,
+  Radio,
   Send,
   Server,
+  Sparkles,
   Table2,
+  Terminal,
+  TestTube2,
   Triangle,
   Wind,
+  Workflow,
   Zap,
 } from "lucide-react";
 
@@ -73,46 +89,97 @@ function Container(props: SVGProps<SVGSVGElement>) {
 
 const skillIcons: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   Python: Code2,
+  TypeScript: FileCode,
   "C++": Braces,
   Java: Coffee,
   JavaScript: Braces,
   SQL: Database,
   React: Layers,
+  "React.js": Layers,
   "Next.js": Triangle,
   "Tailwind CSS": Wind,
+  Vite: Zap,
   HTML: FileCode,
+  HTML5: FileCode,
   CSS: Palette,
+  CSS3: Palette,
+  PWA: SmartphoneIcon,
+  "Web Audio API": Radio,
   "Node.js": Server,
   "Express.js": Server,
   Flask: FlaskConical,
   FastAPI: Zap,
+  Streamlit: Activity,
+  "REST APIs": Server,
+  "Creative AI Agents": Sparkles,
+  "AI Agents": BrainCircuit,
+  "Artificial Intelligence (AI)": BrainCircuit,
   "Machine Learning": BrainCircuit,
+  "Deep Learning": Network,
+  "Generative AI": Sparkles,
+  "Computer Vision": Eye,
+  "Natural Language Processing (NLP)": MessageSquareCode,
+  "Prompt Engineering": Sparkles,
+  MLOps: Workflow,
+  "Data Science": Binary,
+  "Data Analysis": LineChart,
+  "Data Visualization": BarChart3,
+  "Pandas (Software)": Table2,
+  Pandas: Table2,
+  NumPy: Calculator,
+  Algorithms: Binary,
+  "Data Structures": Boxes,
+  "Neural Networks": Network,
+  LangChain: Workflow,
   TensorFlow: Layers,
   "Scikit-learn": BarChart3,
-  NumPy: Calculator,
-  Pandas: Table2,
-  MongoDB: DatabaseZap,
   PostgreSQL: Database,
-  Firebase: Flame,
+  MongoDB: DatabaseZap,
+  SQLite: Database,
   Supabase: Zap,
+  "Supabase RLS": Zap,
+  Firebase: Flame,
+  SQLAlchemy: Database,
   Git: GitBranch,
   GitHub: Github,
+  "GitHub Actions": Workflow,
   Docker: Container,
   "VS Code": Code2,
   Postman: Send,
+  Vitest: TestTube2,
   Figma: PenTool,
   Vercel: Triangle,
   Render: Cloud,
+  AWS: Cloud,
+  "Linux/Bash": Terminal,
+  OpenTelemetry: Activity,
 };
+
+function SmartphoneIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
+      <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+      <path d="M12 18h.01" />
+    </svg>
+  );
+}
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="flex min-h-0 flex-col gap-y-8">
+    <section id="skills" className="flex min-h-0 flex-col gap-y-6">
       <BlurFade delay={BLUR_FADE_DELAY}>
         <SectionHeading
           eyebrow="Skills"
           title="Technologies I work with"
-          description="Organized across the stack — from programming languages to deployment."
+          description="Verified across GitHub repositories, production deployments, and technical assessments."
         />
       </BlurFade>
 
