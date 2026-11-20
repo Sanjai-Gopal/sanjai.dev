@@ -10,15 +10,13 @@ export function SanjaiLogo(props: SVGProps<SVGSVGElement>) {
       {...props}
     >
       <path
-        d="M9.5 8.5h7.5a3 3 0 0 1 0 6c-4 0-7.5 1.2-7.5 5.2 0 2 1.6 3.3 3.5 3.3H22"
+        d="M23.5 9H12.5C10.0147 9 8 11.0147 8 13.5C8 15.9853 10.0147 18 12.5 18H19.5C21.9853 18 24 20.0147 24 22.5C24 24.9853 21.9853 27 19.5 27H8.5"
         stroke="currentColor"
-        strokeWidth="2.4"
+        strokeWidth="2.8"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="9.5" cy="8.5" r="2.6" fill="currentColor" />
-      <circle cx="13.8" cy="16.5" r="1.7" fill="currentColor" />
-      <circle cx="22" cy="23" r="2.6" fill="currentColor" />
+      <circle cx="23.5" cy="9" r="1.5" fill="#10b981" />
     </svg>
   );
 }

@@ -17,32 +17,50 @@ const geistMono = GeistMono;
 export const metadata: Metadata = {
   metadataBase: new URL(sanjaiProfile.url),
   title: {
-    default: `${sanjaiProfile.name} — AI & Full Stack Developer`,
+    default: "Sanjai — AI & Full-Stack Systems Engineer | SKCET",
     template: `%s — ${sanjaiProfile.name}`,
   },
   description:
-    "Portfolio of Sanjai, AI & Data Science Engineer at SKCET building autonomous AI agents, distributed systems, and production web applications.",
+    "Official portfolio of Sanjai, AI & Data Science Engineer at SKCET (9.0 CGPA). Building autonomous AI agents, full-stack systems, and real-time ML telemetry.",
   keywords: [
     "Sanjai",
+    "Sanjai Gopal",
     "sanjaibuilds",
-    "Full Stack Developer",
-    "AI Agent Builder",
-    "AI and Data Science",
-    "Freelancer",
+    "sanjaibuilds.cv",
+    "AI Engineer",
+    "Full Stack Systems Engineer",
+    "SKCET",
+    "Sri Krishna College of Engineering and Technology",
+    "Autonomous AI Agents",
+    "Data Science",
     "Machine Learning",
-    "React",
     "Next.js",
+    "React",
     "FastAPI",
-    "Portfolio",
+    "Python",
+    "TypeScript",
   ],
+  authors: [{ name: sanjaiProfile.name, url: sanjaiProfile.url }],
+  creator: sanjaiProfile.name,
+  alternates: {
+    canonical: sanjaiProfile.url,
+  },
   openGraph: {
-    title: `${sanjaiProfile.name} — AI & Full Stack Developer`,
+    title: "Sanjai — AI & Full-Stack Systems Engineer | SKCET",
     description:
-      "Portfolio of Sanjai, AI & Data Science Engineer at SKCET building autonomous AI agents, distributed systems, and production web applications.",
+      "Official portfolio of Sanjai, AI & Data Science Engineer at SKCET (9.0 CGPA). Building autonomous AI agents, full-stack systems, and real-time ML telemetry.",
     url: sanjaiProfile.url,
-    siteName: sanjaiProfile.name,
+    siteName: "Sanjai Portfolio",
     locale: "en_US",
-    type: "website",
+    type: "profile",
+    images: [
+      {
+        url: "/sanjai-logo.svg",
+        width: 1200,
+        height: 630,
+        alt: "Sanjai — AI & Full-Stack Systems Engineer",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -56,13 +74,25 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: `${sanjaiProfile.name} — AI & Full Stack Developer`,
+    title: "Sanjai — AI & Full-Stack Systems Engineer | SKCET",
     description:
-      "Portfolio of Sanjai, AI & Data Science Engineer at SKCET building autonomous AI agents, distributed systems, and production web applications.",
+      "Official portfolio of Sanjai, AI & Data Science Engineer at SKCET (9.0 CGPA). Building autonomous AI agents, full-stack systems, and real-time ML telemetry.",
     card: "summary_large_image",
+    images: ["/sanjai-logo.svg"],
   },
   icons: {
-    icon: { url: "/sanjai-favicon.png", type: "image/png", sizes: "192x192" },
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/sanjai-favicon.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "icon", url: "/sanjai-icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
   },
 };
 
@@ -71,8 +101,73 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": `${sanjaiProfile.url}#person`,
+        name: "Sanjai",
+        alternateName: "Sanjai Gopal",
+        url: sanjaiProfile.url,
+        image: `${sanjaiProfile.url}me.jpg`,
+        jobTitle: "AI & Full-Stack Systems Engineer",
+        description:
+          "2nd-year B.Tech AI & Data Science student at SKCET (9.0 CGPA) building production web platforms, autonomous AI agents, and competitive hackathon projects.",
+        alumniOf: {
+          "@type": "CollegeOrUniversity",
+          name: "Sri Krishna College of Engineering and Technology (SKCET)",
+          sameAs: "https://www.skcet.ac.in",
+        },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Coimbatore",
+          addressRegion: "Tamil Nadu",
+          addressCountry: "India",
+        },
+        email: `mailto:${sanjaiProfile.email}`,
+        sameAs: [sanjaiProfile.github, sanjaiProfile.linkedin],
+        knowsAbout: [
+          "Artificial Intelligence",
+          "Autonomous AI Agents",
+          "Machine Learning",
+          "Data Science",
+          "Full-Stack Web Development",
+          "React",
+          "Next.js",
+          "FastAPI",
+          "Python",
+          "TypeScript",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": `${sanjaiProfile.url}#website`,
+        url: sanjaiProfile.url,
+        name: "Sanjai — AI & Full-Stack Systems Engineer",
+        description:
+          "Official portfolio of Sanjai, AI & Data Science Engineer at SKCET.",
+        publisher: {
+          "@id": `${sanjaiProfile.url}#person`,
+        },
+      },
+      {
+        "@type": "ProfilePage",
+        "@id": sanjaiProfile.url,
+        url: sanjaiProfile.url,
+        name: "Sanjai's Portfolio & Engineering Showcase",
+        mainEntity: {
+          "@id": `${sanjaiProfile.url}#person`,
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png" />
+      </head>
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased relative selection:bg-primary selection:text-primary-foreground",
@@ -83,12 +178,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: sanjaiProfile.name,
-              url: sanjaiProfile.url,
-            }),
+            __html: JSON.stringify(jsonLd),
           }}
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
