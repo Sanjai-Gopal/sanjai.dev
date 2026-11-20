@@ -710,21 +710,20 @@ export const sanjaiProfile = {
     { label: "Location", value: "Coimbatore, Tamil Nadu, India", href: undefined },
   ],
   chatSuggestions: [
-    "Who is Sanjai?",
     "Tell me about CareNest AI.",
     "Tell me about Swasthya Sathi AI.",
-    "Tell me about AQI24.",
-    "What hackathons has Sanjai participated in?",
-    "What certifications does Sanjai hold?",
-    "Is Sanjai available for freelance projects?",
+    "What hackathons has Sanjai won?",
+    "What are Sanjai's technical skills?",
+    "Is Sanjai available for freelance or internships?",
+    "Tell me about Sanjai's education at SKCET.",
     "How can I contact Sanjai?",
   ],
   chat: {
     intro:
-      "Hi! I'm Ask Sanjai, Sanjai's personal portfolio assistant. Ask me anything about Sanjai's skills, AI projects like CareNest AI, Swasthya Sathi AI, AQI24, hackathons with ISRO and UNESCO, certifications, or freelance services.",
+      "Welcome! I'm Ask Sanjai, the official AI portfolio concierge for Sanjai. I can walk you through his verified projects (CareNest AI, Swasthya Sathi AI, AQI24), hackathons (SIH 2026, BIS 3rd Prize, ISRO), technical skills, or freelance availability.",
     boundary:
-      "I'm Ask Sanjai, Sanjai's portfolio assistant. I can help you learn about Sanjai, his projects, skills, education, certifications, achievements, and freelance services.\n\nTry asking:\n• Who is Sanjai?\n• Tell me about CareNest AI.\n• Tell me about Swasthya Sathi AI.\n• What hackathons has Sanjai built for?\n• How can I contact Sanjai?",
+      "I am Ask Sanjai, Sanjai's official AI portfolio concierge. I can only speak about Sanjai—his projects, engineering skills, education, certifications, and experience.\n\nTry asking:\n• Who is Sanjai?\n• Tell me about CareNest AI.\n• Tell me about Swasthya Sathi AI.\n• What hackathons has Sanjai won?\n• How can I contact Sanjai?",
     unavailable:
-      "Sorry, Ask Sanjai is temporarily unavailable. Please try again later or contact Sanjai directly at sanjai.sparkmail@gmail.com.",
+      "Ask Sanjai is temporarily unavailable. Please try again in a moment or contact Sanjai directly at sanjai.sparkmail@gmail.com.",
   },
 } as const;

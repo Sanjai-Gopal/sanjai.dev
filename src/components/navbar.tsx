@@ -13,7 +13,7 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { sanjaiProfile } from "@/data/sanjai-profile";
 import { cn } from "@/lib/utils";
-import { Home, Mail, Menu, X } from "lucide-react";
+import { FileText, Home, Mail, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { Icons } from "@/components/icons";
@@ -46,7 +46,7 @@ const dockItems = [
   },
   {
     label: "Resume",
-    icon: Icons.globe,
+    icon: FileText,
     href: sanjaiProfile.resumeUrl,
     external: false,
   },

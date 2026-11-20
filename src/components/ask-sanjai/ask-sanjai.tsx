@@ -235,15 +235,19 @@ export function AskSanjai() {
           aria-label="Open Ask Sanjai, AI assistant"
           aria-expanded={false}
           initial={{ scale: 1 }}
-          animate={{ scale: [1, 1.08, 1] }}
-          transition={{ duration: 1.4, times: [0, 0.5, 1], ease: "easeInOut" }}
+          animate={{ scale: [1, 1.04, 1] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
           exit={{ opacity: 0, scale: 0.9 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.97 }}
-          className="fixed bottom-24 right-4 z-50 flex items-center gap-2 rounded-full border border-border bg-primary text-primary-foreground px-4 py-3 shadow-lg shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:bottom-6 md:right-6"
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.96 }}
+          className="fixed bottom-24 right-4 z-50 flex items-center gap-2.5 rounded-full border border-primary/40 bg-primary/95 text-primary-foreground px-4 py-3 shadow-xl shadow-primary/25 backdrop-blur-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:bottom-6 md:right-6"
         >
-          <Sparkles className="size-5" aria-hidden />
-          <span className="text-sm font-semibold">Ask Sanjai</span>
+          <span className="relative flex size-2.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+            <span className="relative inline-flex size-2.5 rounded-full bg-emerald-400" />
+          </span>
+          <Sparkles className="size-4" aria-hidden />
+          <span className="text-sm font-semibold tracking-tight">Ask Sanjai · AI</span>
         </motion.button>
       )}
     </AnimatePresence>

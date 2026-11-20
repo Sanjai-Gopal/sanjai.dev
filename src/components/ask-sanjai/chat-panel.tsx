@@ -10,6 +10,8 @@ import {
   Eraser,
   Send,
   Square,
+  Sparkles,
+  Zap,
   X,
 } from "lucide-react";
 import { motion } from "motion/react";
@@ -31,37 +33,37 @@ interface ChatPanelProps {
 
 const markdownComponents: Components = {
   p: (props) => (
-    <p className="mb-2 leading-relaxed last:mb-0" {...props} />
+    <p className="mb-2.5 leading-relaxed text-foreground/90 last:mb-0" {...props} />
   ),
   ul: (props) => (
-    <ul className="mb-2 list-disc space-y-1 pl-4 last:mb-0" {...props} />
+    <ul className="mb-2.5 list-disc space-y-1.5 pl-4 text-foreground/90 last:mb-0" {...props} />
   ),
   ol: (props) => (
-    <ol className="mb-2 list-decimal space-y-1 pl-4 last:mb-0" {...props} />
+    <ol className="mb-2.5 list-decimal space-y-1.5 pl-4 text-foreground/90 last:mb-0" {...props} />
   ),
   li: (props) => <li className="leading-relaxed" {...props} />,
-  strong: (props) => <strong className="font-semibold" {...props} />,
+  strong: (props) => <strong className="font-semibold text-foreground" {...props} />,
   pre: (props) => (
     <pre
-      className="mb-2 overflow-x-auto rounded-lg border border-border bg-muted p-3 text-xs leading-relaxed last:mb-0"
+      className="mb-2.5 overflow-x-auto rounded-xl border border-border/70 bg-muted/80 p-3 text-xs leading-relaxed text-foreground last:mb-0"
       {...props}
     />
   ),
   code: (props) => {
     const isBlock = String(props.className || "").includes("language-");
     if (isBlock) {
-      return <code className="text-xs leading-relaxed" {...props} />;
+      return <code className="text-xs leading-relaxed font-mono" {...props} />;
     }
     return (
       <code
-        className="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]"
+        className="rounded-md border border-border/50 bg-muted/60 px-1.5 py-0.5 font-mono text-[0.85em] font-medium text-primary"
         {...props}
       />
     );
   },
   a: (props) => (
     <a
-      className="text-primary underline underline-offset-2"
+      className="font-medium text-primary underline underline-offset-4 transition-colors hover:text-primary/80"
       target="_blank"
       rel="noopener noreferrer"
       {...props}
@@ -71,15 +73,18 @@ const markdownComponents: Components = {
 
 function TypingIndicator() {
   return (
-    <div className="flex items-center gap-1.5 px-1 py-2" aria-label="Typing">
+    <div className="flex items-center gap-1.5 px-1 py-2" aria-label="Sanjai AI is formulating response">
       {[0, 1, 2].map((i) => (
         <motion.span
           key={i}
-          className="size-1.5 rounded-full bg-muted-foreground"
-          animate={{ opacity: [0.3, 1, 0.3], y: [0, -3, 0] }}
-          transition={{ duration: 1, repeat: Infinity, delay: i * 0.15 }}
+          className="size-2 rounded-full bg-primary/70"
+          animate={{ opacity: [0.3, 1, 0.3], y: [0, -3.5, 0] }}
+          transition={{ duration: 0.9, repeat: Infinity, delay: i * 0.15 }}
         />
       ))}
+      <span className="ml-2 text-xs font-medium text-muted-foreground animate-pulse">
+        Generating answer…
+      </span>
     </div>
   );
 }
@@ -88,11 +93,11 @@ function SanjaiAvatar({ className }: { className?: string }) {
   return (
     <span
       className={cn(
-        "relative block shrink-0 overflow-hidden rounded-lg border border-border bg-card text-foreground",
+        "relative flex shrink-0 items-center justify-center overflow-hidden rounded-xl border border-primary/30 bg-primary/10 text-primary shadow-xs",
         className
       )}
     >
-      <SanjaiLogo className="absolute inset-0 size-full p-1.5" />
+      <SanjaiLogo className="size-full p-1.5" />
     </span>
   );
 }
@@ -116,10 +121,8 @@ function AssistantMessage({
 
   return (
     <div className="flex w-full gap-2.5">
-      <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full border border-border bg-muted text-primary">
-        <Bot className="size-3.5" aria-hidden />
-      </span>
-      <div className="group relative min-w-0 max-w-[85%] flex-1 rounded-2xl rounded-tl-sm border border-border bg-card px-3.5 py-2.5 text-sm text-foreground">
+      <SanjaiAvatar className="mt-0.5 size-7 rounded-lg" />
+      <div className="group relative min-w-0 max-w-[88%] flex-1 rounded-2xl rounded-tl-sm border border-border/80 bg-card/80 p-3.5 text-sm text-foreground shadow-xs backdrop-blur-xs transition-colors hover:border-border">
         {message.content ? (
           <div className="break-words text-pretty">
             <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
@@ -134,10 +137,10 @@ function AssistantMessage({
             type="button"
             onClick={handleCopy}
             aria-label="Copy response"
-            className="absolute -right-3 -top-3 flex size-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground opacity-0 shadow-sm transition-opacity hover:text-foreground focus-visible:opacity-100 group-hover:opacity-100"
+            className="absolute -right-2.5 -top-2.5 flex size-6 items-center justify-center rounded-full border border-border bg-background text-muted-foreground opacity-0 shadow-xs transition-all hover:border-primary/40 hover:text-foreground focus-visible:opacity-100 group-hover:opacity-100"
           >
             {copied ? (
-              <Check className="size-3 text-primary" aria-hidden />
+              <Check className="size-3 text-emerald-500" aria-hidden />
             ) : (
               <Copy className="size-3" aria-hidden />
             )}
@@ -151,7 +154,7 @@ function AssistantMessage({
 function UserMessage({ message }: { message: ChatMessage }) {
   return (
     <div className="flex w-full justify-end">
-      <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-3.5 py-2.5 text-sm text-primary-foreground">
+      <div className="max-w-[85%] rounded-2xl rounded-br-sm bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground shadow-xs">
         {message.content}
       </div>
     </div>
@@ -191,66 +194,95 @@ export default function ChatPanel({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.98 }}
+      initial={{ opacity: 0, y: 18, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 12, scale: 0.98 }}
-      transition={{ duration: 0.18, ease: "easeOut" }}
+      exit={{ opacity: 0, y: 14, scale: 0.96 }}
+      transition={{ duration: 0.22, ease: "easeOut" }}
       role="dialog"
-      aria-label="Ask Sanjai chat assistant"
-      className="fixed bottom-24 right-4 z-50 flex h-[min(70vh,560px)] w-[min(calc(100vw-2rem),380px)] flex-col overflow-hidden rounded-2xl border border-border bg-background/95 shadow-2xl shadow-black/20 backdrop-blur-xl md:bottom-6 md:right-6"
+      aria-label="Ask Sanjai AI portfolio concierge"
+      className="fixed bottom-24 right-4 z-50 flex h-[min(74vh,600px)] w-[min(calc(100vw-2rem),410px)] flex-col overflow-hidden rounded-3xl border border-border/80 bg-background/95 shadow-2xl shadow-primary/10 backdrop-blur-2xl md:bottom-6 md:right-6"
     >
-      <div className="flex items-center justify-between gap-2 border-b border-border bg-muted/40 px-4 py-3">
-        <div className="flex items-center gap-2.5">
-          <SanjaiAvatar className="size-8 rounded-lg" />
+      {/* Header */}
+      <div className="flex items-center justify-between gap-2 border-b border-border/70 bg-muted/40 px-4 py-3.5 backdrop-blur-xs">
+        <div className="flex items-center gap-3">
+          <SanjaiAvatar className="size-9 rounded-xl" />
           <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold">Ask Sanjai</span>
-            <span className="text-[11px] text-muted-foreground">
-              AI assistant · Sanjai&apos;s portfolio
+            <div className="flex items-center gap-2">
+              <span className="text-sm font-bold tracking-tight text-foreground">
+                Ask Sanjai
+              </span>
+              <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+                <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Live Concierge
+              </span>
+            </div>
+            <span className="text-[11px] text-muted-foreground flex items-center gap-1 mt-0.5">
+              <Zap className="size-3 text-amber-500 fill-amber-500/30" />
+              Powered by Groq Ultra-Fast AI
             </span>
           </div>
         </div>
+
         <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={onClear}
-            aria-label="Clear chat"
+            aria-label="Clear chat history"
+            title="Clear chat"
             disabled={!hasMessages && !streaming}
-            className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-40"
+            className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground disabled:opacity-40"
           >
             <Eraser className="size-4" aria-hidden />
           </button>
           <button
             type="button"
             onClick={onClose}
-            aria-label="Close chat"
-            className="flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+            aria-label="Close chat dialog"
+            title="Close"
+            className="flex size-8 items-center justify-center rounded-xl text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
             <X className="size-4" aria-hidden />
           </button>
         </div>
       </div>
 
-      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-4 py-4">
+      {/* Messages Viewport */}
+      <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto px-4 py-4 scroll-smooth">
         {!hasMessages ? (
-          <div className="flex flex-col items-start gap-3">
-            <div className="flex items-center gap-2.5">
+          <div className="flex flex-col items-start gap-3.5">
+            <div className="flex items-center gap-2.5 rounded-2xl border border-border/60 bg-muted/30 p-3.5 backdrop-blur-xs">
               <SanjaiAvatar className="size-8 rounded-lg" />
-              <span className="text-sm font-semibold">Ask Sanjai</span>
+              <div className="flex flex-col">
+                <span className="text-xs font-semibold text-foreground">
+                  Official AI Portfolio Concierge
+                </span>
+                <span className="text-[11px] text-muted-foreground">
+                  Verified facts · 10 Curated Projects · SKCET 9.0 CGPA
+                </span>
+              </div>
             </div>
+
             <p className="text-sm leading-relaxed text-muted-foreground">
               {sanjaiProfile.chat.intro}
             </p>
-            <div className="flex flex-wrap gap-2">
-              {sanjaiProfile.chatSuggestions.map((suggestion) => (
-                <button
-                  key={suggestion}
-                  type="button"
-                  onClick={() => onSend(suggestion)}
-                  className="rounded-full border border-border bg-muted/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
-                >
-                  {suggestion}
-                </button>
-              ))}
+
+            <div className="flex flex-col gap-2 pt-1 w-full">
+              <span className="text-xs font-semibold text-foreground/80 flex items-center gap-1.5">
+                <Sparkles className="size-3.5 text-primary" />
+                Suggested Inquiries:
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {sanjaiProfile.chatSuggestions.map((suggestion) => (
+                  <button
+                    key={suggestion}
+                    type="button"
+                    onClick={() => onSend(suggestion)}
+                    className="rounded-full border border-border/80 bg-muted/40 px-3 py-1.5 text-xs font-medium text-foreground/80 transition-all hover:border-primary/50 hover:bg-primary/5 hover:text-primary active:scale-98"
+                  >
+                    {suggestion}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
@@ -269,9 +301,10 @@ export default function ChatPanel({
         )}
       </div>
 
+      {/* Input Bar */}
       <form
         onSubmit={handleSubmit}
-        className="flex items-center gap-2 border-t border-border bg-muted/20 px-3 py-3"
+        className="flex items-center gap-2 border-t border-border/70 bg-muted/20 px-3.5 py-3 backdrop-blur-xs"
       >
         <input
           ref={inputRef}
@@ -279,34 +312,38 @@ export default function ChatPanel({
           value={input}
           onChange={(event) => setInput(event.target.value)}
           maxLength={2000}
-          placeholder="Ask me anything…"
-          aria-label="Message"
-          className="h-10 flex-1 rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition-colors placeholder:text-muted-foreground/70 focus-visible:border-primary/50 focus-visible:ring-1 focus-visible:ring-primary/30"
+          placeholder="Ask anything about Sanjai's projects or skills…"
+          aria-label="Message for Ask Sanjai"
+          className="h-10 flex-1 rounded-xl border border-border/80 bg-background px-3.5 text-sm text-foreground outline-none transition-all placeholder:text-muted-foreground/70 focus-visible:border-primary/60 focus-visible:ring-2 focus-visible:ring-primary/20"
         />
         {streaming ? (
           <button
             type="button"
             onClick={onStop}
-            aria-label="Stop generating"
+            aria-label="Stop generating response"
+            title="Stop generating"
             className="flex size-10 shrink-0 items-center justify-center rounded-xl border border-border bg-background text-foreground transition-colors hover:bg-accent"
           >
-            <Square className="size-4 fill-current" aria-hidden />
+            <Square className="size-4 fill-current text-destructive" aria-hidden />
           </button>
         ) : (
           <button
             type="submit"
             disabled={!input.trim()}
             aria-label="Send message"
-            className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground transition-opacity disabled:opacity-40"
+            title="Send"
+            className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm transition-all hover:opacity-90 disabled:opacity-40"
           >
             <Send className="size-4" aria-hidden />
           </button>
         )}
       </form>
 
-      <p className="border-t border-border bg-muted/20 px-4 py-2 text-[10px] text-muted-foreground/70">
-        Ask Sanjai can make mistakes. Verify important information.
-      </p>
+      {/* Footer Info */}
+      <div className="flex items-center justify-between border-t border-border/50 bg-muted/30 px-4 py-2 text-[10.5px] text-muted-foreground/75">
+        <span>Verified portfolio data</span>
+        <span className="font-mono text-[10px]">v2.4 · Groq</span>
+      </div>
     </motion.div>
   );
 }
