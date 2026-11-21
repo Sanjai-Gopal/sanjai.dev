@@ -24,7 +24,7 @@ export function HeroTerminal() {
           "ISRO & UNESCO Youth Hackathon Submissions",
         ],
         activeProjects: ["CareNest AI", "Swasthya Sathi AI", "AQI24", "AlgoShelf"],
-        domain: "https://www.sanjaibuilds.cv/",
+        domain: "https://heysanjai.cv/",
       },
       null,
       2
@@ -64,7 +64,7 @@ export function HeroTerminal() {
             <span className="size-3 rounded-full bg-emerald-500/80 transition-opacity hover:opacity-100" />
           </div>
           <span className="ml-2 hidden text-[11px] text-muted-foreground sm:inline">
-            sanjai@sanjaibuilds: ~
+            sanjai@heysanjai: ~
           </span>
         </div>
 

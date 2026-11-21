@@ -25,8 +25,8 @@ export const metadata: Metadata = {
   keywords: [
     "Sanjai",
     "Sanjai Gopal",
-    "sanjaibuilds",
-    "sanjaibuilds.cv",
+    "heysanjai",
+    "heysanjai.cv",
     "AI Engineer",
     "Full Stack Systems Engineer",
     "SKCET",

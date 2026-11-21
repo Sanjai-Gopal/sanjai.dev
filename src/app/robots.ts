@@ -14,7 +14,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://www.sanjaibuilds.cv/sitemap.xml",
-    host: "https://www.sanjaibuilds.cv",
+    sitemap: "https://heysanjai.cv/sitemap.xml",
+    host: "https://heysanjai.cv",
   };
 }

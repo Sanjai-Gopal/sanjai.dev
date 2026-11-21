@@ -1,4 +1,4 @@
-export const portfolioUrl: string = "https://www.sanjaibuilds.cv/";
+export const portfolioUrl: string = "https://heysanjai.cv/";
 
 export const sanjaiProfile = {
   name: "Sanjai",
@@ -14,7 +14,7 @@ export const sanjaiProfile = {
   heroBadge: "Available for Freelance, AI Collaborations & Internships",
   heroDescription:
     "2nd-year AI & Data Science student at SKCET (9.0 CGPA) building production-ready web platforms, autonomous AI agents, and competitive hackathon projects.",
-  url: "https://www.sanjaibuilds.cv/",
+  url: "https://heysanjai.cv/",
   portfolioUrl,
   location: "Coimbatore, Tamil Nadu, India",
   phone: "+91 9363265552",

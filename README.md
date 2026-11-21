@@ -4,7 +4,7 @@
 
 ### Modern personal portfolio built with Next.js, Magic UI, and Framer Motion.
 
-[![Live Website](https://img.shields.io/badge/Live%20Website-Visit-black?style=for-the-badge&logo=vercel)](https://www.sanjaibuilds.cv/)
+[![Live Website](https://img.shields.io/badge/Live%20Website-Visit-black?style=for-the-badge&logo=vercel)](https://heysanjai.cv/)
 
 </div>
 
