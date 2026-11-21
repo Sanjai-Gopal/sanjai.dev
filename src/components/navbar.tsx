@@ -1,23 +1,28 @@
 "use client";
 
-import { Dock, DockIcon } from "@/components/magicui/dock";
 import { ModeToggle } from "@/components/mode-toggle";
 import { SanjaiLogo } from "@/components/sanjai-logo";
-import { Separator } from "@/components/ui/separator";
+import { Icons } from "@/components/icons";
 import {
   Tooltip,
-  TooltipArrow,
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { buttonVariants } from "@/components/ui/button";
 import { sanjaiProfile } from "@/data/sanjai-profile";
-import { cn } from "@/lib/utils";
-import { FileText, Home, Mail, Menu, X } from "lucide-react";
+import { Globe, Home, Mail, Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
-import { Icons } from "@/components/icons";
-import { CommandMenu } from "@/components/command-menu";
+
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Achievements", href: "#achievements" },
+  { label: "Freelancing", href: "#freelancing" },
+  { label: "Contact", href: "#contact" },
+];
 
 const dockItems = [
   {
@@ -45,10 +50,10 @@ const dockItems = [
     external: false,
   },
   {
-    label: "Resume",
-    icon: FileText,
-    href: sanjaiProfile.resumeUrl,
-    external: false,
+    label: "Website",
+    icon: Globe,
+    href: sanjaiProfile.url,
+    external: true,
   },
 ];
 
@@ -57,37 +62,31 @@ export default function Navbar() {
 
   return (
     <>
+      {/* Top Navbar */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
-        <nav className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4">
+        <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
+          {/* Logo & Stacked Name */}
           <a
             href={sanjaiProfile.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${sanjaiProfile.name} — open personal portfolio`}
-            className="flex items-center gap-2 rounded-md font-semibold tracking-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             onClick={() => setOpen(false)}
           >
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg border border-border bg-card text-foreground shadow-sm">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-card text-foreground shadow-xs">
               <SanjaiLogo className="size-5" />
             </span>
-            <span className="text-[15px] leading-tight sm:text-base">
-              {sanjaiProfile.name}
-            </span>
+            <div className="flex flex-col text-left leading-none tracking-tight">
+              <span className="text-[14px] font-bold text-foreground">Sanjai</span>
+              <span className="text-[14px] font-bold text-foreground">Gopal</span>
+            </div>
           </a>
 
-          <ul className="hidden items-center gap-1 lg:flex">
-            {[
-              { label: "About", href: "#about" },
-              { label: "Projects", href: "#projects" },
-              { label: "Skills", href: "#skills" },
-              { label: "Achievements", href: "#achievements" },
-              { label: "Certifications", href: "#certifications" },
-              { label: "Contact", href: "#contact" },
-            ].map((item) => (
+          {/* Desktop Nav Links */}
+          <ul className="hidden items-center gap-1 xl:flex lg:flex">
+            {navLinks.map((item) => (
               <li key={item.href}>
                 <a
                   href={item.href}
-                  className="rounded-md px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="rounded-md px-3 py-1.5 text-xs sm:text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   {item.label}
                 </a>
@@ -95,15 +94,30 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="flex items-center gap-2">
-            <CommandMenu />
-            <ModeToggle className="size-9 sm:size-8" />
+          {/* Right Action Icons & Hire Me Button */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <a
+              href={sanjaiProfile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="hidden sm:inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Icons.github className="size-4" />
+            </a>
+            <a
+              href={sanjaiProfile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn Profile"
+              className="hidden sm:inline-flex size-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Icons.linkedin className="size-4" />
+            </a>
+            <ModeToggle className="size-8 rounded-lg border border-border/60 bg-muted/20" />
             <a
               href="#contact"
-              className={cn(
-                buttonVariants({ size: "sm" }),
-                "hidden md:inline-flex cursor-pointer font-medium"
-              )}
+              className="inline-flex items-center justify-center rounded-xl bg-foreground px-4 py-1.5 text-xs sm:text-sm font-semibold text-background shadow-xs transition-opacity hover:opacity-90"
             >
               Hire Me
             </a>
@@ -119,6 +133,7 @@ export default function Navbar() {
           </div>
         </nav>
 
+        {/* Mobile Dropdown Menu */}
         <AnimatePresence>
           {open ? (
             <motion.div
@@ -126,39 +141,31 @@ export default function Navbar() {
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.2 }}
-              className="overflow-hidden border-t border-border/60 lg:hidden"
+              className="overflow-hidden border-t border-border/60 bg-background/95 backdrop-blur-xl lg:hidden"
             >
               <ul className="flex flex-col gap-1 px-4 py-3">
-                {sanjaiProfile.navigation.map((item) => (
+                {navLinks.map((item) => (
                   <li key={item.href}>
                     <a
                       href={item.href}
                       onClick={() => setOpen(false)}
-                      className="block rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
                     >
                       {item.label}
                     </a>
                   </li>
                 ))}
-                <li className="pt-1">
-                  <a
-                    href="#contact"
-                    onClick={() => setOpen(false)}
-                    className={cn(buttonVariants(), "w-full cursor-pointer")}
-                  >
-                    Hire Me
-                  </a>
-                </li>
               </ul>
             </motion.div>
           ) : null}
         </AnimatePresence>
       </header>
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-[max(0.75rem,env(safe-area-inset-bottom))] z-30">
-        <Dock className="z-40 pointer-events-auto relative h-12 w-fit mx-auto flex items-center gap-1 p-1 sm:h-14 sm:gap-2 sm:p-1.5 origin-bottom scale-[0.82] sm:scale-100 border bg-card/90 backdrop-blur-3xl shadow-[0_0_10px_3px] shadow-primary/5">
+      {/* Floating Bottom Dock (Circular Icons) */}
+      <aside aria-label="Quick Actions Dock" className="pointer-events-none fixed inset-x-0 bottom-5 z-40 flex justify-center px-4">
+        <div className="pointer-events-auto flex items-center gap-1.5 sm:gap-2 rounded-full border border-border/70 bg-card/90 px-3 py-1.5 shadow-2xl backdrop-blur-2xl">
           {dockItems.map((item) => {
-            const IconComponent = item.icon;
+            const Icon = item.icon;
             return (
               <Tooltip key={item.label}>
                 <TooltipTrigger asChild>
@@ -166,44 +173,35 @@ export default function Navbar() {
                     href={item.href}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
+                    aria-label={item.label}
+                    className="flex size-9 sm:size-10 items-center justify-center rounded-full border border-border/60 bg-muted/40 text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
                   >
-                    <DockIcon className="rounded-2xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors sm:rounded-3xl">
-                      <IconComponent className="size-full rounded-sm overflow-hidden object-contain" />
-                    </DockIcon>
+                    <Icon className="size-4 sm:size-4.5" />
                   </a>
                 </TooltipTrigger>
-                <TooltipContent
-                  side="top"
-                  sideOffset={8}
-                  className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
-                >
-                  <p>{item.label}</p>
-                  <TooltipArrow className="fill-primary" />
+                <TooltipContent side="top" sideOffset={10} className="rounded-lg text-xs font-medium">
+                  {item.label}
                 </TooltipContent>
               </Tooltip>
             );
           })}
-          <Separator
-            orientation="vertical"
-            className="h-2/3 m-auto w-px bg-border"
-          />
+
+          {/* Vertical Separator */}
+          <div className="mx-0.5 sm:mx-1 h-5 w-px bg-border/60" />
+
+          {/* Theme Toggle in Dock */}
           <Tooltip>
             <TooltipTrigger asChild>
-              <DockIcon className="rounded-2xl cursor-pointer size-full bg-background p-0 text-muted-foreground hover:text-foreground hover:bg-muted backdrop-blur-3xl border border-border transition-colors sm:rounded-3xl">
-                <ModeToggle className="size-full cursor-pointer rounded-none bg-transparent text-muted-foreground hover:text-foreground" />
-              </DockIcon>
+              <div className="flex size-9 sm:size-10 items-center justify-center rounded-full border border-border/60 bg-muted/40 text-muted-foreground transition-all hover:bg-muted hover:text-foreground">
+                <ModeToggle className="size-full rounded-full border-0 bg-transparent text-muted-foreground hover:text-foreground" />
+              </div>
             </TooltipTrigger>
-            <TooltipContent
-              side="top"
-              sideOffset={8}
-              className="rounded-xl bg-primary text-primary-foreground px-4 py-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.3)] dark:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]"
-            >
-              <p>Theme</p>
-              <TooltipArrow className="fill-primary" />
+            <TooltipContent side="top" sideOffset={10} className="rounded-lg text-xs font-medium">
+              Theme
             </TooltipContent>
           </Tooltip>
-        </Dock>
-      </div>
+        </div>
+      </aside>
     </>
   );
 }
