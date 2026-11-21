@@ -2,6 +2,7 @@ import { AskSanjaiEntry } from "@/components/ask-sanjai";
 import { Footer } from "@/components/footer";
 import { MotionProvider } from "@/components/motion-provider";
 import Navbar from "@/components/navbar";
+import { ScrollProgressBar } from "@/components/scroll-progress-bar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { sanjaiProfile } from "@/data/sanjai-profile";
@@ -9,10 +10,16 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 
 const geist = GeistSans;
 const geistMono = GeistMono;
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: "--font-bricolage",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(sanjaiProfile.url),
@@ -170,9 +177,10 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased relative selection:bg-primary selection:text-primary-foreground",
+          "min-h-screen bg-background font-sans antialiased relative selection:bg-emerald-500/20 selection:text-emerald-400",
           geist.variable,
-          geistMono.variable
+          geistMono.variable,
+          bricolage.variable
         )}
       >
         <script
@@ -183,6 +191,7 @@ export default function RootLayout({
         />
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <MotionProvider>
+            <ScrollProgressBar />
             <TooltipProvider delayDuration={0}>
               {/* Subtle executive top ambient glow */}
               <div

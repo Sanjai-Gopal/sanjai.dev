@@ -5,6 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
+  --font-display: var(--font-bricolage), system-ui, sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -274,4 +275,13 @@
     @apply border-b-0;
   }
 
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-bricolage), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 197, 94, 0.25);
+  color: inherit;
 }

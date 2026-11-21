@@ -74,7 +74,7 @@ export default function Navbar() {
             <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-card text-foreground shadow-xs">
               <SanjaiLogo className="size-5" />
             </span>
-            <span className="text-base sm:text-lg font-bold tracking-tight text-foreground">
+            <span className="font-display text-lg sm:text-xl font-extrabold tracking-tight text-foreground">
               Sanjai
             </span>
           </a>
