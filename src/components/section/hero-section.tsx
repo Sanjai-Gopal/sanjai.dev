@@ -109,23 +109,23 @@ export function HeroSection() {
         >
           <div className="relative group">
             {/* Ambient executive glow */}
-            <div className="absolute -inset-1 rounded-full bg-gradient-to-tr from-emerald-500/25 via-sky-500/10 to-transparent blur-md opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+            <div className="absolute -inset-1.5 rounded-full bg-gradient-to-tr from-emerald-500/25 via-sky-500/10 to-transparent blur-lg opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
             
-            <div className="relative overflow-hidden rounded-full border border-border/80 bg-card p-1 shadow-2xl ring-1 ring-border/50">
+            <div className="relative overflow-hidden rounded-full border border-border/80 bg-card p-1.5 shadow-2xl ring-1 ring-border/50">
               <Image
                 src={sanjaiProfile.avatarUrl}
                 alt={`${sanjaiProfile.name} — AI & Full Stack Developer`}
-                width={512}
-                height={512}
+                width={640}
+                height={640}
                 priority
                 quality={95}
-                sizes="(max-width: 768px) 160px, (max-width: 1200px) 256px, 320px"
-                className="size-36 rounded-full object-cover object-[center_28%] md:size-48 lg:size-52"
+                sizes="(max-width: 768px) 240px, 320px"
+                className="size-48 rounded-full object-cover object-[center_28%] sm:size-56 md:size-64 lg:size-72"
               />
             </div>
 
             {/* Active engineering badge */}
-            <div className="absolute -bottom-1 right-2 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-background/95 px-2.5 py-0.5 text-[10px] font-mono font-medium text-emerald-400 shadow-md backdrop-blur-md">
+            <div className="absolute bottom-2 right-3 flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-background/95 px-3 py-0.5 text-[11px] font-mono font-medium text-emerald-400 shadow-md backdrop-blur-md">
               <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse" />
               <span>ACTIVE</span>
             </div>
