@@ -47,12 +47,6 @@ export function LiveStatusPill() {
           </>
         )}
       </span>
-
-      {/* Current Active Build */}
-      <span className="hidden items-center gap-1.5 rounded-full border border-border/60 bg-muted/40 px-3 py-1 font-mono text-[11px] text-muted-foreground sm:inline-flex">
-        <span className="size-1.5 rounded-full bg-primary/60" />
-        <span>Featured: CareNest AI</span>
-      </span>
     </div>
   );
 }

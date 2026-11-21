@@ -65,19 +65,18 @@ export default function Navbar() {
       {/* Top Navbar */}
       <header className="fixed inset-x-0 top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
         <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-          {/* Logo & Stacked Name */}
+          {/* Logo & Name */}
           <a
             href={sanjaiProfile.url}
             className="flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             onClick={() => setOpen(false)}
           >
-            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-border/80 bg-card text-foreground shadow-xs">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-card text-foreground shadow-xs">
               <SanjaiLogo className="size-5" />
             </span>
-            <div className="flex flex-col text-left leading-none tracking-tight">
-              <span className="text-[14px] font-bold text-foreground">Sanjai</span>
-              <span className="text-[14px] font-bold text-foreground">Gopal</span>
-            </div>
+            <span className="text-base sm:text-lg font-bold tracking-tight text-foreground">
+              Sanjai
+            </span>
           </a>
 
           {/* Desktop Nav Links */}

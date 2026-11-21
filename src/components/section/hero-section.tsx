@@ -115,11 +115,12 @@ export function HeroSection() {
               <Image
                 src={sanjaiProfile.avatarUrl}
                 alt={`${sanjaiProfile.name} — AI & Full Stack Developer`}
-                width={256}
-                height={256}
+                width={512}
+                height={512}
                 priority
-                sizes="(max-width: 768px) 160px, 256px"
-                className="size-36 rounded-full object-cover md:size-48 lg:size-52"
+                quality={95}
+                sizes="(max-width: 768px) 160px, (max-width: 1200px) 256px, 320px"
+                className="size-36 rounded-full object-cover object-[center_28%] md:size-48 lg:size-52"
               />
             </div>
 

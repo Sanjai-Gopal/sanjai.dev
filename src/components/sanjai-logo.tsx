@@ -3,20 +3,20 @@ import type { SVGProps } from "react";
 export function SanjaiLogo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
-      viewBox="0 0 32 32"
+      viewBox="0 0 512 512"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
       {...props}
     >
       <path
-        d="M23.5 9H12.5C10.0147 9 8 11.0147 8 13.5C8 15.9853 10.0147 18 12.5 18H19.5C21.9853 18 24 20.0147 24 22.5C24 24.9853 21.9853 27 19.5 27H8.5"
+        d="M366 160H200C164.654 160 136 188.654 136 224C136 259.346 164.654 288 200 288H312C347.346 288 376 316.654 376 352C376 387.346 347.346 416 312 416H146"
         stroke="currentColor"
-        strokeWidth="2.8"
+        strokeWidth="48"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="23.5" cy="9" r="1.5" fill="#10b981" />
+      <circle cx="366" cy="160" r="18" fill="#10b981" />
     </svg>
   );
 }
